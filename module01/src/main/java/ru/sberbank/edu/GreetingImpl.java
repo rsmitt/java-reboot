@@ -10,7 +10,6 @@ public class GreetingImpl implements Greeting {
 
     @Override
     public String getBestHobby() {
-        String hobby = "Водный туризм";
-        return hobby;
+        return "Водный туризм";
     }
 }
