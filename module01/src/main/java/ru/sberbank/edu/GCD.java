@@ -23,6 +23,10 @@ public class GCD implements CommonDivisor{
         return firstNum + secondNum;
     }
 
+
+    /**
+     * Метод выводит наибольший общий делитель 2х чисел для простого случая.
+     */
     private int simpleCases(int firstNumber, int secondNumber) {
         if (firstNumber == secondNumber) {
             return firstNumber;
