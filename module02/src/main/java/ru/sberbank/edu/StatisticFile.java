@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package ru.sberbank.edu;
 
 import java.io.BufferedReader;
@@ -12,10 +7,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Класс собирает статистику из файла
+ */
 public class StatisticFile implements Statistic {
     public StatisticFile() {
     }
 
+    /**
+     * Метод возвращает количество строк в файле
+     */
     public int getLineCount(File file) throws IOException {
         int countLine = 0;
         BufferedReader fileReader = new BufferedReader(new FileReader(file));
@@ -28,6 +29,9 @@ public class StatisticFile implements Statistic {
         return countLine;
     }
 
+    /**
+     * Метод возвращает количество пробелов в файле
+     */
     public int getSpaceCount(File file) throws IOException {
         int countSpace = 0;
         FileReader fileReader = new FileReader(file);
@@ -42,6 +46,9 @@ public class StatisticFile implements Statistic {
         return countSpace;
     }
 
+    /**
+     * Метод возвращает самую длинную строку в файле в файле
+     */
     public String getLongestLine(File file) throws IOException {
         String longestLine = "";
         BufferedReader fileReader = new BufferedReader(new FileReader(file));
@@ -56,6 +63,9 @@ public class StatisticFile implements Statistic {
         return longestLine;
     }
 
+    /**
+     * Метод сохраняет статитстику файла в файл или в базу данных на выбор пользователя
+     */
     public void save(int lineCount, int spaceCount, String line) throws IOException {
         System.out.println("Для сохранения статистики в файл введите: 1 \nДля сохранения статистики в базу данных введите: 2 ");
         Scanner scanner = new Scanner(System.in);
