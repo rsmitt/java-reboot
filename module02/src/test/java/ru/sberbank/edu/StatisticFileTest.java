@@ -6,8 +6,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
-import ru.sberbank.edu.StatisticFile;
+import static org.junit.Assert.*;
 
 
 public class StatisticFileTest {
