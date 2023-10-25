@@ -1,13 +1,14 @@
 package ru.sberbank.edu;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import java.io.IOException;
+
+public class App {
+    public static void main(String[] args) throws IOException {
+
+        StatisticsImpl statisticsImplForFile = new StatisticsImplForFile("input.txt");
+        statisticsImplForFile.save();
+
+        StatisticsImpl statisticsImplForDB = new StatisticsImplForDB("input.txt");
+        statisticsImplForDB.save();
     }
 }

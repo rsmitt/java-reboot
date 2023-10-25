@@ -1,11 +1,13 @@
 package ru.sberbank.edu;
 
-// интерфейс можно менять
+import java.io.IOException;
+import java.util.List;
+
 public interface Statistic {
 
-    int getLineCount();
-    int getSpaceCount();
-    String getLongestLine();
-    void save(int lineCount, int spaceCount, String line);
+    int getLineCount() throws IOException;
+    int getSpaceCount() throws IOException;
+    List<List<String>> getLongestLine() throws IOException;
+    void save() throws IOException;
 
 }
