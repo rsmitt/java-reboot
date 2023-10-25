@@ -3,7 +3,6 @@ package ru.sberbank.edu;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * Hello world!
@@ -24,13 +23,11 @@ public class App
         writer.close();
         File file = new File("file.txt");
         StatisticFile statisticFile = new StatisticFile();
-        statisticFile.save(statisticFile.getLineCount(file),
+        Save saveFile = new SaveFile();
+        Save saveDB = new SaveBD();
+        statisticFile.save(saveFile, statisticFile.getLineCount(file),
+                statisticFile.getSpaceCount(file), statisticFile.getLongestLine(file));
+        statisticFile.save(saveDB, statisticFile.getLineCount(file),
                 statisticFile.getSpaceCount(file), statisticFile.getLongestLine(file));
     }
 }
-
-// Сделать интерфейс save от него наследовать классы SaveBD SaveFail реализующие метод Save.
-//Класс StatisticFile наследуется от интрфейсов Statistic и от интеофейса Save
-// В методе Save класса StatisticFile на вход передается объект интерфейс save
-//В классе App вызывается метод Save класса StatisticFile ему на вход передаются обекты интерфейса save
-// реализуемые классами SaveBD SaveFail

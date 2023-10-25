@@ -3,14 +3,12 @@ package ru.sberbank.edu;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * Класс собирает статистику из файла
  */
-public class StatisticFile implements Statistic {
+public class StatisticFile implements Statistic{
     public StatisticFile() {
     }
 
@@ -66,19 +64,8 @@ public class StatisticFile implements Statistic {
     /**
      * Метод сохраняет статитстику файла в файл или в базу данных на выбор пользователя
      */
-    public void save(int lineCount, int spaceCount, String line) throws IOException {
-        System.out.println("Для сохранения статистики в файл введите: 1 \nДля сохранения статистики в базу данных введите: 2 ");
-        Scanner scanner = new Scanner(System.in);
-        int num = scanner.nextInt();
-        if (num == 1) {
-            FileWriter writerResult = new FileWriter("ResultFile.txt");
-            writerResult.write("Количество строк в файле: " + lineCount + "\nКоличество пробелов в файле: " + spaceCount + "\nСамая длинная строка: " + line);
-            writerResult.close();
-            System.out.println("Статистика сохранена в файл.");
-        } else {
-            System.out.println("Статистика сохранена в базу данных.");
-        }
-
+    public void save(Save save, int lineCount, int spaceCount, String line) {
+        save.save(lineCount, spaceCount, line);
     }
 }
 

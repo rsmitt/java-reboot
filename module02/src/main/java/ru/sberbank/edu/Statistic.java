@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-// интерфейс можно менять
 public interface Statistic {
 
     int getLineCount(File file) throws IOException;
@@ -12,6 +11,6 @@ public interface Statistic {
     String getLongestLine(File file) throws IOException;
 
 
-    void save(int lineCount, int spaceCount, String line) throws IOException;
+    void save(Save save, int lineCount, int spaceCount, String line) throws IOException;
 
 }
