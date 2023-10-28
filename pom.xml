@@ -23,14 +23,13 @@
         <mockito.junit.version>5.3.1</mockito.junit.version>
         <assertj.version>3.24.2</assertj.version>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.version}</version>
+            <version>4.13.2</version>
             <scope>test</scope>
-        </dependency>
+        </dependency> 
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
