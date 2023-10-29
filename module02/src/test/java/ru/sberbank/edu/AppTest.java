@@ -1,38 +1,25 @@
 package ru.sberbank.edu;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+import java.io.IOException;
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+public class AppTest {
+    @Test
+    @DisplayName("")
+    public void test() throws IOException {
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+        StatisticsImpl statisticsForFile = new StatisticsImplForFile("input_test.txt");
+        StatisticsImpl statisticsForDB = new StatisticsImplForDB("input_test.txt");
+
+       Assertions.assertTrue(statisticsForFile.getLineCount() >= 0 &&
+               statisticsForFile.getSpaceCount() >= 0 &&
+               statisticsForFile.getFile_path().getClass().getTypeName().equals("java.lang.String") &&
+               statisticsForDB.getLineCount() >= 0 &&
+               statisticsForDB.getSpaceCount() >= 0 &&
+               statisticsForDB.getFile_path().getClass().getTypeName().equals("java.lang.String")
+       );
     }
 }
