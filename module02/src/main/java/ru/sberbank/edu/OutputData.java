@@ -16,9 +16,11 @@ public  abstract class OutputData implements DataResource{
     }
     public void writeResultToFile(String filePath, String content) throws IOException {
         validateFile(filePath);
-        BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
-        writer.write(content);
-        writer.close();
+        try( BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))){
+            writer.write(content);
+        }
+
+
     }
     protected void validateFile(String filePath) throws FileNotFoundException {
         File file = new File(filePath);
