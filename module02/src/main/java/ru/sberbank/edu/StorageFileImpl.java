@@ -23,9 +23,7 @@ public class StorageFileImpl implements Storage {
         sb.append(System.lineSeparator());
         sb.append("Самая длинная строка - ");
         sb.append(statistic.getLongestLine());
-        FileOutputStream outputStream = null;
-        try {
-            outputStream = new FileOutputStream(storageName);
+        try(FileOutputStream outputStream = new FileOutputStream(storageName)) {
             outputStream.write(sb.toString().getBytes());
             outputStream.close();
         } catch (IOException e) {
