@@ -1,6 +1,8 @@
 package ru.sberbank.edu;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 class PersonSergeyChildinovTest {
 
@@ -14,6 +16,7 @@ class PersonSergeyChildinovTest {
     void getFullName() {
         PersonSergeyChildinov sergey = PersonSergeyChildinov.getInstance();
         Assertions.assertTrue(sergey.getFullName().equals("Чильдинов Сергей Михайлович"));
+
     }
 
     @Test

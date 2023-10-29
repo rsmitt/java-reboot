@@ -1,10 +1,13 @@
 package ru.sberbank.edu;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GCDTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getDivisor() {
         GCD gcd = new GCD();
         Assertions.assertEquals(gcd.getDivisor(144,24),24);
