@@ -17,13 +17,12 @@ public class StatisticFile implements Statistic{
      */
     public int getLineCount(File file) throws IOException {
         int countLine = 0;
-        BufferedReader fileReader = new BufferedReader(new FileReader(file));
-
-        for(String line = fileReader.readLine(); line != null; line = fileReader.readLine()) {
-            ++countLine;
+        try(BufferedReader fileReader = new BufferedReader(new FileReader(file)))
+        {
+            for(String line = fileReader.readLine(); line != null; line = fileReader.readLine()) {
+                ++countLine;
+            }
         }
-
-        fileReader.close();
         return countLine;
     }
 
@@ -32,15 +31,14 @@ public class StatisticFile implements Statistic{
      */
     public int getSpaceCount(File file) throws IOException {
         int countSpace = 0;
-        FileReader fileReader = new FileReader(file);
-
-        for(int symbol = fileReader.read(); symbol != -1; symbol = fileReader.read()) {
-            if (symbol == 32) {
-                ++countSpace;
+        try(FileReader fileReader = new FileReader(file))
+        {
+            for(int symbol = fileReader.read(); symbol != -1; symbol = fileReader.read()) {
+                if (symbol == 32) {
+                    ++countSpace;
+                }
             }
         }
-
-        fileReader.close();
         return countSpace;
     }
 
@@ -49,15 +47,14 @@ public class StatisticFile implements Statistic{
      */
     public String getLongestLine(File file) throws IOException {
         String longestLine = "";
-        BufferedReader fileReader = new BufferedReader(new FileReader(file));
-
-        for(String line = fileReader.readLine(); line != null; line = fileReader.readLine()) {
-            if (longestLine.length() < line.length()) {
-                longestLine = line;
+        try(BufferedReader fileReader = new BufferedReader(new FileReader(file));)
+        {
+            for(String line = fileReader.readLine(); line != null; line = fileReader.readLine()) {
+                if (longestLine.length() < line.length()) {
+                    longestLine = line;
+                }
             }
         }
-
-        fileReader.close();
         return longestLine;
     }
 
