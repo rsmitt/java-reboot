@@ -9,18 +9,14 @@ import ru.sberbank.edu.impl.*;
 public class App 
 {
     public static void main( String[] args ) {
-        Statistic statistic;
-        Reader reader;
-        Writer writer;
+        Reader reader = new FileReaderImpl("module02/src/test/resources/inputFile.txt");
+        Writer writer = new FileWriterImpl("module02/src/test/resources/outputFile.txt");
+        Statistic statistic = reader.calcStatistic();
+        writer.write(statistic);
 
-        reader = new FileReaderImpl();
-        writer = new FileWriterImpl();
-        statistic = reader.calcStatistic("module02/src/test/resources/inputFile.txt");
-        writer.save(statistic, "module02/src/test/resources/outputFile.txt");
-
-        reader = new DBReaderImpl();
-        writer = new DBWriterImpl();
-        statistic = reader.calcStatistic("DB connect read");
-        writer.save(statistic, "DB connect write");
+        reader = new DBReaderImpl("jdbc:mysql://localhost:3306/myDb", "user1", "pass");
+        writer = new DBWriterImpl("jdbc:mysql://localhost:3306/myDb", "user1", "pass");
+        statistic = reader.calcStatistic();
+        writer.write(statistic);
     }
 }

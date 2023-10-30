@@ -3,10 +3,8 @@ package ru.sberbank.edu;
 public interface Writer {
 
     /**
-     * Метод для записи статистических данных
-     *
-     * @param statistic хнарит и отдает статистические данные
-     * @param source    куда записывать данные
+     * Записывает статистические данные
+     * @param statistic объект со статистикой
      */
-    void save(Statistic statistic, Object source);
+    void write(Statistic statistic);
 }

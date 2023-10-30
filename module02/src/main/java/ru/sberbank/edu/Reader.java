@@ -3,11 +3,9 @@ package ru.sberbank.edu;
 public interface Reader {
 
     /**
-     * Метод для получения данных и статистики по ним
-     *
-     * @param source откуда получить данные
-     * @return хнарит и отдает статистические данные
+     * Получает данные и считает статистику по ним
+     * @return объект со статистическими данными
      */
-    Statistic calcStatistic(Object source);
+    Statistic calcStatistic();
 
 }
