@@ -1,11 +1,23 @@
 package ru.sberbank.edu;
 
-// интерфейс можно менять
 public interface Statistic {
 
+    /**
+     * Отдает сумму строк в тексте
+     * @return сумма строк
+     */
     int getLineCount();
+
+    /**
+     * Отдает сумму пробелов в тексте
+     * @return сумма пробелов
+     */
     int getSpaceCount();
+
+    /**
+     * Отдает самую длинную строку из текста
+     * @return строка
+     */
     String getLongestLine();
-    void save(int lineCount, int spaceCount, String line);
 
 }

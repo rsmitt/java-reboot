@@ -1,0 +1,4 @@
+File statistic
+Line count: 1
+Space count: 2
+The longest line: Longest line
