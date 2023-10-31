@@ -1,11 +1,10 @@
 package ru.sberbank.edu;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 public class CustomArrayImpl<T> implements CustomArray {
 
-    private T[] values = (T[]) new Object[0];
+    private Object[] values = new Object[0];
 
 
 
@@ -22,10 +21,10 @@ public class CustomArrayImpl<T> implements CustomArray {
     @Override
     public boolean add(Object item) {
         try {
-            T[] temp = values;
-            values = (T[]) new Object[temp.length + 1];
+            Object[] temp = values;
+            values = new Object[temp.length + 1];
             System.arraycopy(temp, 0, values, 0, temp.length);
-            values[values.length - 1] = (T) item;
+            values[values.length - 1] = item;
             return true;
         }
         catch (ClassCastException ex) {
@@ -61,7 +60,15 @@ public class CustomArrayImpl<T> implements CustomArray {
 
     @Override
     public void remove(int index) {
-
+        try {
+            Object[] temp = values;
+            values = new Object[temp.length - 1];
+            System.arraycopy(temp, 0, values, 0, index);
+            System.arraycopy(temp, index + 1, values, index, temp.length - index - 1);
+        }
+        catch (ClassCastException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -71,12 +78,30 @@ public class CustomArrayImpl<T> implements CustomArray {
 
     @Override
     public boolean contains(Object item) {
-        return false;
+        return indexOf(item) != -1;
     }
 
     @Override
     public int indexOf(Object item) {
-        return 0;
+        int index = -1;
+        if (item == null) {
+            for (int i = 0; i <= values.length - 1;) {
+                if(values[i] == null) {
+                    index = i;
+                    break;
+                }
+                i++;
+            }
+        } else {
+            for (int i = 0; i <= values.length - 1;) {
+                if(values[i] != null && values[i].equals(item)) {
+                    index = i;
+                    break;
+                }
+                i++;
+            }
+        }
+        return index;
     }
 
     @Override
@@ -91,11 +116,23 @@ public class CustomArrayImpl<T> implements CustomArray {
 
     @Override
     public void reverse() {
+        try {
+            Object[] temp = values;
+            values = new Object[temp.length];
+            int j = 0;
+            for (int i = temp.length - 1; i >= 0; i--) {
+                values[j] = temp[i];
+                j++;
+            }
+        }
+        catch (ClassCastException ex) {
+            ex.printStackTrace();
+        }
 
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return values;
     }
 }
