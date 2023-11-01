@@ -15,5 +15,9 @@ public class App
         List<Integer> listOfInt = new ArrayList<>(base);
         listOfInt.sort(cdc);
         System.out.println(listOfInt);
+        Person person1 = new Person("Ivan","Govnov", 20);
+        Person person2 = new Person("Ivan","Govnov", 20);
+        System.out.println(person2.hashCode());
+        System.out.println(person1.hashCode());
     }
 }
