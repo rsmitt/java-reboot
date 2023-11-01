@@ -3,6 +3,8 @@ package ru.sberbank.edu;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class PersonTest {
 
     @Test
@@ -22,7 +24,7 @@ class PersonTest {
 
         int result = person1.compareTo(person2);
 
-        Assertions.assertTrue(result < 0);
+        assertTrue(result < 0);
     }
 
     @Test
@@ -32,7 +34,7 @@ class PersonTest {
 
         int result = person1.compareTo(person2);
 
-        Assertions.assertTrue(result < 0);
+        assertTrue(result < 0);
     }
 
     @Test
@@ -40,7 +42,7 @@ class PersonTest {
         Person person1 = new Person("John", "New York", 30);
         Person person2 = new Person("John", "New York", 30);
 
-        Assertions.assertEquals(person2, person1);
+       assertTrue(person2.equals(person1));
     }
 
     @Test
@@ -48,6 +50,21 @@ class PersonTest {
         Person person1 = new Person("John", "New York", 30);
         Person person2 = new Person("Alice", "Los Angeles", 25);
 
-        Assertions.assertNotEquals(person2, person1);
+        assertFalse(person2.equals(person1));
+    }
+
+    @Test
+    void checkHashCodeTest(){
+        Person person1 = new Person("John", "New York", 30);
+        Person person2 = new Person("John", "New York", 30);
+        int person1HashCode = person1.hashCode();
+        int person2HashCode = person2.hashCode();
+        assertEquals(person1HashCode,person2HashCode);
+    }
+    @Test
+    void checkToStringTest(){
+        Person person1 = new Person("John", "New York", 30);
+        String result = person1.toString();
+        assertEquals("Person{name='John', city='New York', age=30}",result);
     }
 }
