@@ -56,7 +56,7 @@ public class CustomArrayImpl<T> implements CustomArray {
     public boolean addAll(Object[] items) {
         try {
             if ((getCapacity() - size()) < items.length ) {
-                ensureCapacity((getCapacity() + items.length) * 2);
+                ensureCapacity((getCapacity() * 2) + items.length);
             }
             Object[] temp = values;
             System.arraycopy(temp, 0, values, 0, temp.length);
@@ -80,7 +80,7 @@ public class CustomArrayImpl<T> implements CustomArray {
     public boolean addAll(int index, Object[] items) {
         try {
             if ((getCapacity() - size()) < items.length ) {
-                ensureCapacity((getCapacity() + items.length) * 2);
+                ensureCapacity((getCapacity() * 2) + items.length);
             }
             Object[] temp = new Object[size()];
             System.arraycopy(values, 0, temp, 0, size());
@@ -173,7 +173,7 @@ public class CustomArrayImpl<T> implements CustomArray {
     @Override
     public void reverse() {
         try {
-            Object[] temp = values;
+            Object[] temp = toArray();
             values = new Object[temp.length];
             int j = 0;
             for (int i = temp.length - 1; i >= 0; i--) {
@@ -189,6 +189,10 @@ public class CustomArrayImpl<T> implements CustomArray {
 
     @Override
     public Object[] toArray() {
-        return values;
+        Object[] val = new Object[size()];
+        for (int i = 0; i < size(); i++) {
+            val[i]=values[i];
+        }
+        return val;
     }
 }
