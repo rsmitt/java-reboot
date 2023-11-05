@@ -1,9 +1,9 @@
 package ru.sberbank.edu;
 
 public class Person implements Comparable<Person>{
-    String name;
-    String city;
-    Integer age;
+    private String name;
+    private String city;
+    private Integer age;
 
     public Person(String name, String city, Integer age) {
         this.name = name;
@@ -47,5 +47,17 @@ public class Person implements Comparable<Person>{
             return cityCompare;
         }
         return this.name.compareTo(otherPerson.name);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public Integer getAge() {
+        return age;
     }
 }
