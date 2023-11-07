@@ -4,10 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-/**
- * Hello world!
- *
- */
+
 public class App 
 {
     public static void main( String[] args ) throws IOException {
@@ -23,7 +20,11 @@ public class App
         writer.close();
         File file = new File("file.txt");
         StatisticFile statisticFile = new StatisticFile();
-        statisticFile.save(statisticFile.getLineCount(file),
+        Save saveFile = new SaveFile();
+        Save saveDB = new SaveBD();
+        statisticFile.save(saveFile, statisticFile.getLineCount(file),
+                statisticFile.getSpaceCount(file), statisticFile.getLongestLine(file));
+        statisticFile.save(saveDB, statisticFile.getLineCount(file),
                 statisticFile.getSpaceCount(file), statisticFile.getLongestLine(file));
     }
 }
