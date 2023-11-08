@@ -1,14 +1,11 @@
 package ru.sberbank.edu;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Geo position.
  */
 public class GeoPosition {
-    private double latitude; // широта в радианах
-    private double longitude; // долгота в радианах
+    private final double latitude; // широта в радианах
+    private final double longitude; // долгота в радианах
 
     public GeoPosition(String latitudeGradus, String longitudeGradus) {
         this.latitude = parseDegrees(latitudeGradus);
@@ -16,10 +13,10 @@ public class GeoPosition {
     }
 
     private double parseDegrees(String degrees) {
-        if(!degrees.contains("(")){
+        if (!degrees.contains("(")) {
             return Math.toRadians(Double.parseDouble(degrees));
         }
-        double radian = Double.parseDouble(degrees.substring(0,2));
+        double radian = Double.parseDouble(degrees.substring(0, 2));
         int minutesIndex = degrees.indexOf("(") + 1;
         int secondsIndex = degrees.indexOf("'") + 1;
         double minutes = Double.parseDouble(degrees.substring(minutesIndex, secondsIndex - 1));
@@ -27,8 +24,9 @@ public class GeoPosition {
 
         // Перевод минут и секунд в доли градуса
         double degreesOffset = radian + (minutes / 60) + (seconds / 3600);
-       return Math.toRadians(degreesOffset);
+        return Math.toRadians(degreesOffset);
     }
+
     public double getLatitude() {
         return latitude;
     }

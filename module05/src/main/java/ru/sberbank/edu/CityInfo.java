@@ -4,6 +4,14 @@ import java.util.Objects;
 
 public class CityInfo {
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPosition(GeoPosition position) {
+        this.position = position;
+    }
+
     private String name;
     private GeoPosition position;
 
@@ -11,6 +19,10 @@ public class CityInfo {
     public CityInfo(String name, GeoPosition position) {
         this.name = name;
         this.position = position;
+    }
+
+    public CityInfo() {
+
     }
 
     public String getName() {
