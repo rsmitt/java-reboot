@@ -2,11 +2,8 @@ package ru.sberbank.edu;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-/**
- * Travel Service.
- */
+
 public class TravelService {
     private static final double EARTH_RADIUS_KM = 6371.0;
     // do not change type
@@ -19,10 +16,10 @@ public class TravelService {
      * @throws IllegalArgumentException if city already exists
      */
     public void add(CityInfo cityInfo) {
-      if(cities.stream().anyMatch(city -> city.equals(cityInfo))) {
-          throw new IllegalArgumentException("This city already added");
-      }
-      cities.add(cityInfo);
+        if (cities.stream().anyMatch(city -> city.equals(cityInfo))) {
+            throw new IllegalArgumentException("This city already added");
+        }
+        cities.add(cityInfo);
     }
 
     /**
@@ -30,15 +27,15 @@ public class TravelService {
      *
      * @param cityInfo - city name
      * @throws IllegalArgumentException if city doesn't exist
-     *
-     * ИСПРАВИЛ НА CITYINFO входной параметр! Могут существовать несколько городов с одним названием. Paris например штук 6.
+     *                                  <p>
+     *                                  ИСПРАВИЛ НА CITYINFO входной параметр! Могут существовать несколько городов с одним названием. Paris например штук 6.
      */
     public void remove(CityInfo cityInfo) {
-       List<CityInfo> cityToRemove = cities.stream().filter(city -> city.equals(cityInfo)).toList();
-       if(cityToRemove.isEmpty()){
-           throw new IllegalArgumentException(String.format("City %s not found",cityInfo.getName()));
-       }
-       cities.removeAll(cityToRemove);
+        List<CityInfo> cityToRemove = cities.stream().filter(city -> city.equals(cityInfo)).toList();
+        if (cityToRemove.isEmpty()) {
+            throw new IllegalArgumentException(String.format("City %s not found", cityInfo.getName()));
+        }
+        cities.removeAll(cityToRemove);
     }
 
     /**
@@ -80,7 +77,7 @@ public class TravelService {
     public List<CityInfo> getCitiesNear(CityInfo cityName, double radius) {
         List<CityInfo> targetCity = cities.stream()
                 .filter(city -> {
-                    double distance = getDistance(city,cityName);
+                    double distance = getDistance(city, cityName);
                     return distance < radius;
                 })
                 .toList();
