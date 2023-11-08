@@ -1,13 +1,9 @@
 package ru.sberbank.edu;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Random;
-
 /**
- * Hello world!
- *
+ * Программа сортирует объекты Person в коллекции сначала по полю city затем по полю name
+ * В классе CustomDigitComparator реализован компоратор
+ * который сортирует коллекцию чисел сначала на четные затем на нечетные
  */
 public class App 
 {

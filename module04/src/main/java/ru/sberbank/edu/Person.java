@@ -10,6 +10,15 @@ public class Person implements Comparable<Person>{
     private int age;
 
     @Override
+    public int compareTo(Person other) {
+        int result = this.city.compareTo(other.city);
+        if (result == 0) {
+            result = this.name.compareTo(other.name);
+        }
+        return result;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -59,14 +68,5 @@ public class Person implements Comparable<Person>{
         this.name = name;
         this.city = city;
         this.age = age;
-    }
-
-    @Override
-    public int compareTo(Person other) {
-        int result = this.city.compareTo(other.city);
-        if (result == 0) {
-            result = this.name.compareTo(other.name);
-        }
-        return result;
     }
 }
