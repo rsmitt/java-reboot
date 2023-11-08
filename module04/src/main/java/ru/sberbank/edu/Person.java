@@ -52,12 +52,15 @@ public class Person implements Comparable<Person> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return age == person.age && Objects.equals(name, person.name) && Objects.equals(city, person.city);
+        return age == person.age && name.equalsIgnoreCase(person.name) && city.equalsIgnoreCase(person.city);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, city, age);
+        String lclName = name.toLowerCase();
+        String lclCity = city.toLowerCase();
+
+        return Objects.hash(lclName, lclCity, age);
     }
 
     @Override
