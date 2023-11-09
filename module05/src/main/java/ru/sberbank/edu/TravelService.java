@@ -64,22 +64,18 @@ public class TravelService {
      * @throws IllegalArgumentException if source or destination city doesn't exist.
      */
     public int getDistance(String srcCityName, String destCityName) {
-        GeoPosition geoPositionSrc = null;
-        GeoPosition geoPositionDest = null;
-        int check = 0;
-        for (CityInfo cityInfo: cities) {
-            if (cityInfo.getName().equals(srcCityName)) {
-                geoPositionSrc = cityInfo.getPosition();
-                check += 1;
-            }
-            if (cityInfo.getName().equals(destCityName)) {
-                geoPositionDest = cityInfo.getPosition();
-                check += 1;
-            }
-            if (check == 2) {
-                break;
-            }
-        }
+        GeoPosition geoPositionSrc = cities
+                .stream()
+                .filter(cityInfo -> cityInfo.getName().equals(srcCityName))
+                .map(CityInfo::getPosition)
+                .findFirst()
+                .orElse(null);
+        GeoPosition geoPositionDest = cities
+                .stream()
+                .filter(cityInfo -> cityInfo.getName().equals(destCityName))
+                .map(CityInfo::getPosition)
+                .findFirst()
+                .orElse(null);
         if (geoPositionSrc == null || geoPositionDest == null) {
             throw new IllegalArgumentException("Такого/таких города/городов нет в списке TravelService");
         } else {
