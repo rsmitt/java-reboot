@@ -18,7 +18,7 @@ public class TravelService {
      * @throws IllegalArgumentException if city already exists
      */
     public void add(CityInfo cityInfo) {
-        // do something
+        cities.add(cityInfo);
     }
 
     /**
@@ -28,7 +28,7 @@ public class TravelService {
      * @throws IllegalArgumentException if city doesn't exist
      */
     public void remove(String cityName) {
-        // do something
+
     }
 
     /**

@@ -17,7 +17,7 @@ public class App
         }
         System.out.println(latitudeGradusArray.length);
 
-        GeoPosition g = new GeoPosition("58(01'07'')", "55");
+        GeoPosition g = new GeoPosition("-58(01'07'')", "55");
         System.out.println(g.getLatitude());
     }
 }

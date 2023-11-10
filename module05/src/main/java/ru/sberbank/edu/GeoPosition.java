@@ -34,10 +34,10 @@ public class GeoPosition {
         double longitudeMinutes = longitudeGradusArray.length > 1 ? Integer.parseInt(longitudeGradusArray[1]) : 0;
         double longitudeSec = longitudeGradusArray.length > 1 ? Integer.parseInt(longitudeGradusArray[2]) : 0;
 
-        latitude = latitudeGrad > 0 ? latitudeGrad + (latitudeMinutes / 60.0) + (latitudeSec / 3600.0) :
-                latitudeGrad + (-latitudeMinutes / 60.0) + (-latitudeSec / 3600.0);
-        longitude = longitudeGrad > 0 ?  longitudeGrad + (longitudeMinutes / 60.0) + (longitudeSec / 3600.0) :
-                latitudeGrad + (-latitudeMinutes / 60.0) + (-latitudeSec / 3600.0);
+        latitude = Math.toRadians(latitudeGrad > 0 ? latitudeGrad + (latitudeMinutes / 60.0) + (latitudeSec / 3600.0) :
+                latitudeGrad + (-latitudeMinutes / 60.0) + (-latitudeSec / 3600.0));
+        longitude = Math.toRadians(longitudeGrad > 0 ?  longitudeGrad + (longitudeMinutes / 60.0) + (longitudeSec / 3600.0) :
+                latitudeGrad + (-latitudeMinutes / 60.0) + (-latitudeSec / 3600.0));
     }
 
     public double getLatitude() {
