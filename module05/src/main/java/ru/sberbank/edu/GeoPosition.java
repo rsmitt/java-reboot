@@ -23,27 +23,21 @@ public class GeoPosition {
      *                        Possible values: 55, 55(45'07''), 59(57'00'')
      */
     public GeoPosition(String latitudeGradus, String longitudeGradus) {
-        if (latitudeGradus.length() <= 3) {
-            latitude = Math.toRadians(Double.parseDouble(latitudeGradus));
-        }
-        else if (longitudeGradus.length() <= 3) {
-            longitude = Math.toRadians(Double.parseDouble(longitudeGradus));
-        }
-        else if (longitudeGradus.length() > 3) {
-            double grad = 0.0;
-            double minutes = 0.0;
-            double sec = 0.0;
-            latitude = grad + (minutes / 60.0) + (sec / 3600.0);
-        }
-        else if (longitudeGradus.length() > 3) {
+        String[] latitudeGradusArray = latitudeGradus.split("[(')]");
+        String[] longitudeGradusArray = longitudeGradus.split("[(')]");
 
-        }
-        else {
-            System.out.println("Введите значения в формате 55 или 55(45'07'')");
-        }
+        double latitudeGrad = Integer.parseInt(latitudeGradusArray[0]);
+        double latitudeMinutes = latitudeGradusArray.length > 1 ? Integer.parseInt(latitudeGradusArray[1]) : 0;
+        double latitudeSec = latitudeGradusArray.length > 1 ? Integer.parseInt(latitudeGradusArray[2]) : 0;
 
-        latitude = Math.toRadians(Double.parseDouble(latitudeGradus));
-        longitude = Math.toRadians(Double.parseDouble(longitudeGradus));
+        double longitudeGrad = Integer.parseInt(longitudeGradusArray[0]);
+        double longitudeMinutes = longitudeGradusArray.length > 1 ? Integer.parseInt(longitudeGradusArray[1]) : 0;
+        double longitudeSec = longitudeGradusArray.length > 1 ? Integer.parseInt(longitudeGradusArray[2]) : 0;
+
+        latitude = latitudeGrad > 0 ? latitudeGrad + (latitudeMinutes / 60.0) + (latitudeSec / 3600.0) :
+                latitudeGrad + (-latitudeMinutes / 60.0) + (-latitudeSec / 3600.0);
+        longitude = longitudeGrad > 0 ?  longitudeGrad + (longitudeMinutes / 60.0) + (longitudeSec / 3600.0) :
+                latitudeGrad + (-latitudeMinutes / 60.0) + (-latitudeSec / 3600.0);
     }
 
     public double getLatitude() {
@@ -52,14 +46,6 @@ public class GeoPosition {
 
     public double getLongitude() {
         return longitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
     }
 
     @Override
