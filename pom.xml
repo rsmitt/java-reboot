@@ -9,6 +9,9 @@
         <module>module01</module>
         <module>module02</module>
         <module>module03</module>
+        <module>module04</module>
+        <module>module05</module>
+        <module>module06</module>
     </modules>
     <packaging>pom</packaging>
 
