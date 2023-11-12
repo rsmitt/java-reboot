@@ -14,6 +14,8 @@
 3. Реализовать класс TravelService, позволяющий получить расстояние между городами по их координатам.
    - https://www.kobzarev.com/programming/calculation-of-distances-between-cities-on-their-coordinates/
    - https://planetcalc.com/71/
+4. Запрещено использовать циклы, итераторы внутри класса TravelService.
+   Использовать только streams и методы принимающие предикаты. Нельзя объявлять другие поля в классе. Используйте коллекцию cities
 
 ## Критерии приемки
 
