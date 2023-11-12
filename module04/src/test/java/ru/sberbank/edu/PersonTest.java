@@ -27,7 +27,7 @@ public class PersonTest {
     public void whenBothObjectIsEquals() {
         Person person1 = new Person("Artem", "Ekb", 31);
         Person person2 = new Person("Artem", "Ekb", 31);
-        Assertions.assertTrue(person1.equals(person2));
+        Assertions.assertEquals(person1, person2);
         Person person3 = new Person("artem", "ekb", 31);
     }
 
@@ -35,27 +35,27 @@ public class PersonTest {
     public void whenBothObjectLinkIsEquals() {
         Person person1 = new Person("Artem", "Ekb", 31);
         Person person2 = person1;
-        Assertions.assertTrue(person1.equals(person2));
+        Assertions.assertEquals(person1, person2);
     }
 
     @Test
     public void whenBothObjectIsNotEquals() {
         Person person1 = new Person("Artem", "Ekb", 31);
         Person person2 = new Person("Misha", "Omsk", 27);
-        Assertions.assertFalse(person1.equals(person2));
+        Assertions.assertNotEquals(person1, person2);
         Person person3 = new Person("Artem", "Ekb", 13);
-        Assertions.assertFalse(person1.equals(person3));
+        Assertions.assertNotEquals(person1, person3);
         Person person4 = new Person("Artem", "Msk", 31);
-        Assertions.assertFalse(person1.equals(person4));
+        Assertions.assertNotEquals(person1, person4);
         Person person5 = new Person("Rodion", "Ekb", 31);
-        Assertions.assertFalse(person1.equals(person5));
+        Assertions.assertNotEquals(person1, person5);
     }
 
     @Test
     public void whenBothHasDifferentClass() {
         Person person1 = new Person("Artem", "Ekb", 31);
         String person2 = "Misha, Omsk, 27";
-        Assertions.assertFalse(person1.equals(person2));
+        Assertions.assertNotEquals(person1, person2);
     }
 
     @Test
@@ -63,7 +63,7 @@ public class PersonTest {
         Person person1 = new Person("Artem", "Ekb", 31);
         Person person2 = new Person("Artem", "Ekb", 31);
         Assertions.assertTrue(person1.equals(person2) && person2.equals(person1));
-        Assertions.assertTrue(person1.hashCode() == person2.hashCode());
+        Assertions.assertEquals(person1.hashCode(), person2.hashCode());
     }
 
     @Test
@@ -71,7 +71,7 @@ public class PersonTest {
         Person person1 = new Person("Artem", "Ekb", 31);
         Person person2 = new Person("artem", "ekb", 31);
         Assertions.assertTrue(person1.equals(person2) && person2.equals(person1));
-        Assertions.assertTrue(person1.hashCode() != person2.hashCode());
+        Assertions.assertEquals(person1.hashCode(), person2.hashCode());
     }
 
     @Test
