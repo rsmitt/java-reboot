@@ -12,7 +12,6 @@ public class App
 {
     public static void main( String[] args )
     {
-        int i1 = 1, i2 = 2, i3 = 3, i4 = 4;
 
         List<Integer> list = new ArrayList<>();
 

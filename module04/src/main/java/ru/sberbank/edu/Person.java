@@ -2,7 +2,7 @@ package ru.sberbank.edu;
 
 import java.util.Objects;
 
-public class Person implements Comparable{
+public class Person implements Comparable<Person>{
     private String name;
     private String city;
     private int age;
@@ -26,7 +26,7 @@ public class Person implements Comparable{
      * x.compareTo(y)==0} implies that {@code signum(x.compareTo(z))
      * == signum(y.compareTo(z))}, for all {@code z}.
      *
-     * @param o the object to be compared.
+     * @param other the object to be compared.
      * @return a negative integer, zero, or a positive integer as this object
      * is less than, equal to, or greater than the specified object.
      * @throws NullPointerException if the specified object is null
@@ -40,8 +40,15 @@ public class Person implements Comparable{
      * inconsistent with equals."
      */
     @Override
-    public int compareTo(Object o) {
-        return 0;
+    public int compareTo(Person other) {
+        if(this.city.equalsIgnoreCase(other.city) && this.name.equalsIgnoreCase(other.name)){
+            return  0;
+        }
+        if(this.city.equalsIgnoreCase(other.city)){
+            return this.name.compareToIgnoreCase(other.name);
+        }
+
+        return this.city.compareToIgnoreCase(other.city);
     }
     public Person( String name, String city, int age ){
         this.name = name;
