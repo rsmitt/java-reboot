@@ -92,6 +92,12 @@ public class AppTest
         assertTrue(list.get(0).equals(list.get(1)));
         assertFalse(list.get(0).equals(list.get(2)));
 
+        /**
+         * Проверяем корректность работы нашего метода "hashCode" (без учета регистра!)
+         */
+        assertTrue(list.get(0).hashCode() == list.get(1).hashCode());
+        assertFalse(list.get(0).hashCode() == list.get(2).hashCode());
+
         System.out.println("Unsorted: " + list);
 
         list.sort(Person::compareTo);

@@ -53,12 +53,12 @@ public class Person implements Comparable<Person>{
 
 
     /**
-     * Для расчета хэшкода
-     *
+     * Для расчета хэшкода (без учета регистра!)
+     * Переделал метод с учетом замечаний
      */
     @Override
     public int hashCode() {
-        return Objects.hash(name, city, age);
+        return Objects.hash(name.toLowerCase(), city.toLowerCase(), age);
     }
 
 
