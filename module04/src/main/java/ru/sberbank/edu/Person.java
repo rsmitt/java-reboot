@@ -3,9 +3,9 @@ package ru.sberbank.edu;
 import java.util.Objects;
 
 public class Person implements Comparable<Person>{
-    private String name;
-    private String city;
-    private int age;
+    private final String name;
+    private final String city;
+    private final int age;
 
     /**
      * Compares this object with the specified object for order.  Returns a
