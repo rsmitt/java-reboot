@@ -99,7 +99,7 @@ public interface CustomArray<T> {
     /**
      * Get current capacity.
      */
-    int getCapacity();
+    int getCapacity() throws Exception;
 
     /**
      * Reverse list.
