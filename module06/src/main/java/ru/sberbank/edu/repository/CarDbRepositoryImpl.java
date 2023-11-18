@@ -3,11 +3,13 @@ package ru.sberbank.edu.repository;
 
 import ru.sberbank.edu.model.Car;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CarDbRepositoryImpl implements CarRepository {
     private final Connection connection;
@@ -42,8 +44,28 @@ public class CarDbRepositoryImpl implements CarRepository {
     }
 
     @Override
+    public Set<Car> createAll(Collection<Car> cars) throws SQLException {
+        Set<Car> result = new HashSet<>();
+        for (Car car : cars) {
+            result.add(createOrUpdate(car));
+        }
+        return result;
+    }
+
+    @Override
+    public Set<Car> findAll() throws SQLException {
+        Set<Car> result = new HashSet<>();
+        Statement statement = connection.createStatement();
+        String sql = "SELECT * FROM car";
+        ResultSet resultSet = statement.executeQuery(sql);
+        resultSet.next();
+        Car car = new Car(resultSet.getString(1), resultSet.getString(2));
+        result.add(car);
+        return result;
+    }
+
+    @Override
     public Optional<Car> findById(String id) throws SQLException {
-        // validation
         int rowsCount = countRowsById(id);
         if (rowsCount > 1) {
             throw new RuntimeException("Car with id = " + id + " was found many times (" + rowsCount + ").");
@@ -60,8 +82,16 @@ public class CarDbRepositoryImpl implements CarRepository {
     }
 
     @Override
-    public Boolean deleteById(String id) {
-        return null;
+    public Boolean deleteById(String id) throws SQLException {
+        Statement statement = connection.createStatement();
+        String sql = String.format("DELETE FROM car WHERE id = %s", id);
+        return statement.execute(sql);
+    }
+
+    @Override
+    public Boolean deleteAll() throws SQLException {
+        Statement statement = connection.createStatement();;
+        return statement.execute("DELETE FROM car");
     }
 
     private int countRowsById(String id) throws SQLException {
@@ -73,5 +103,17 @@ public class CarDbRepositoryImpl implements CarRepository {
             rowCount = resultSet.getInt(1);
         }
         return rowCount;
+    }
+
+    @Override
+    public Set<Car> findByModel(String model) throws SQLException {
+        Set<Car> result = new HashSet<>();
+        Statement statement = connection.createStatement();
+        String sql = String.format("SELECT * FROM car WHERE model = %S", model);
+        ResultSet resultSet = statement.executeQuery(sql);
+        resultSet.next();
+        Car car = new Car(resultSet.getString(1), resultSet.getString(2));
+        result.add(car);
+        return result;
     }
 }
