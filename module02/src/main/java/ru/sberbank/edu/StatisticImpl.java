@@ -18,12 +18,14 @@ public class StatisticImpl implements Statistic{
         }
         else{
             basicWriter = new FileWriter("input.txt");
-            basicWriter.append("Мы добавляем первую базовую строку" + "\n");
-            basicWriter.append("Мы добавляем вторую базовую строку" + "\n");
-            basicWriter.append("Мы добавляем третью базовую строку, но чтуь чуть подлинее" + "\n");
-
-            basicWriter.close();
-
+            try {
+                basicWriter.append("Мы добавляем первую базовую строку" + "\n");
+                basicWriter.append("Мы добавляем вторую базовую строку" + "\n");
+                basicWriter.append("Мы добавляем третью базовую строку, но чтуь чуть подлинее" + "\n");
+            }
+            finally {
+                basicWriter.close();
+            }
             inputReader = new BufferedReader(new FileReader("input.txt"));
         };
 
@@ -72,11 +74,14 @@ public class StatisticImpl implements Statistic{
     @Override
     public void save(int lineCount, int spaceCount, String line) throws IOException {
         FileWriter outputFile = new FileWriter("output.txt");
-        outputFile.append("В данном файле строк " + lineCount + "\n");
-        outputFile.append("В данном файле пробелов " + spaceCount + "\n");
-        outputFile.append("Самая длинная строка в файле '" + line + "'" + "\n");
-        outputFile.close();
-
+            try {
+                outputFile.append("В данном файле строк " + lineCount + "\n");
+                outputFile.append("В данном файле пробелов " + spaceCount + "\n");
+                outputFile.append("Самая длинная строка в файле '" + line + "'" + "\n");
+            }
+            finally {
+                outputFile.close();
+            }
     }
 
     @Override

@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 /**
  * Unit test for simple App.
@@ -17,7 +20,6 @@ import java.util.List;
 public class AppTest 
     extends TestCase
 {
-
 
     @Test
     void main(){
@@ -43,5 +45,6 @@ public class AppTest
 
         Assertions.assertThat(intList.get(0) == 2 && intList.get(1) == 2 && intList.get(2) == 1 && intList.get(3) == 1 ).isTrue();
         Assertions.assertThat(personList.get(0).getCity().equals("Город") && personList.get(0).getName().equals("имЯ") && personList.get(3).getCity().equals("Город123") && personList.get(3).getName().equals("иМя")  ).isTrue();
+
     }
 }
