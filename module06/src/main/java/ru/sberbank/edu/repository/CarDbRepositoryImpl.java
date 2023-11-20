@@ -109,7 +109,7 @@ public class CarDbRepositoryImpl implements CarRepository {
     public Set<Car> findByModel(String model) throws SQLException {
         Set<Car> result = new HashSet<>();
         Statement statement = connection.createStatement();
-        String sql = String.format("SELECT * FROM car WHERE model = %S", model);
+        String sql = String.format("SELECT * FROM car WHERE model = '%s'", model);
         ResultSet resultSet = statement.executeQuery(sql);
         resultSet.next();
         Car car = new Car(resultSet.getString(1), resultSet.getString(2));
