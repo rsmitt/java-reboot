@@ -28,6 +28,10 @@ public class CarDbRepositoryImpl implements CarRepository {
         this.findByIdPreStmt = connection.prepareStatement(SELECT_CAR_BY_ID);
     }
 
+    /**
+     * Метод обновляет или добавляет авто в таблицу CAR
+     * принимает на вход объект типа car
+     */
     @Override
     public Car createOrUpdate(Car car) throws SQLException {
         Optional<Car> optCar = findById(car.getId());
@@ -43,6 +47,11 @@ public class CarDbRepositoryImpl implements CarRepository {
         return car;
     }
 
+    /**
+     * Метод обновляет или добавляет авто в таблицу CAR
+     * принимает на вход коллекцию типа car
+     * возвращает коллекцию типа car добавленных авто
+     */
     @Override
     public Set<Car> createAll(Collection<Car> cars) throws SQLException {
         Set<Car> result = new HashSet<>();
@@ -52,6 +61,9 @@ public class CarDbRepositoryImpl implements CarRepository {
         return result;
     }
 
+    /**
+     * Метод возвращает коллекцию типа car всех авто
+     */
     @Override
     public Set<Car> findAll() throws SQLException {
         Set<Car> result = new HashSet<>();
@@ -64,6 +76,11 @@ public class CarDbRepositoryImpl implements CarRepository {
         return result;
     }
 
+    /**
+     * Метод находит по id авто в таблицу CAR
+     * принимает на вход строковое значение id
+     * возвращает объект типа car
+     */
     @Override
     public Optional<Car> findById(String id) throws SQLException {
         int rowsCount = countRowsById(id);
@@ -81,6 +98,11 @@ public class CarDbRepositoryImpl implements CarRepository {
         return Optional.of(car);
     }
 
+    /**
+     * Метод удаляет по id авто в таблицу CAR
+     * принимает на вход строковое значение id
+     * возвращает значение Boolean
+     */
     @Override
     public Boolean deleteById(String id) throws SQLException {
         Statement statement = connection.createStatement();
@@ -88,12 +110,21 @@ public class CarDbRepositoryImpl implements CarRepository {
         return statement.execute(sql);
     }
 
+    /**
+     * Метод удаляет все значения в таблице CAR
+     * возвращает значение Boolean
+     */
     @Override
     public Boolean deleteAll() throws SQLException {
         Statement statement = connection.createStatement();;
         return statement.execute("DELETE FROM car");
     }
 
+    /**
+     * Метод проверяет сколько в таблице строк с одинаковым id
+     * принимает на вход строковое значение id
+     * возвращает значение int количество найденых строк
+     */
     private int countRowsById(String id) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM car where id = ?");
         preparedStatement.setString(1, id);
@@ -105,6 +136,11 @@ public class CarDbRepositoryImpl implements CarRepository {
         return rowCount;
     }
 
+    /**
+     * Метод удаляет по значению model авто в таблицу CAR
+     * принимает на вход строковое значение model
+     * возвращает значение коллекцию найденых объектов типа car
+     */
     @Override
     public Set<Car> findByModel(String model) throws SQLException {
         Set<Car> result = new HashSet<>();
