@@ -89,7 +89,7 @@ public class CarBootstrapTest {
     @Test
     public void WhenEditModel() throws Exception{
         List<String> result = new ArrayList<String>();
-        String[] expectedResult = new String[]{"777", "Lada", "35", "Volvo", "55", "KIA", "65", "HONDA", "45", "Haval"};;
+        String[] expectedResult = new String[]{"777", "Lada", "35","Volvo", "55", "KIA", "65", "HONDA", "45", "Haval"};
         CarRepository carRepository = new CarDbRepositoryImpl(H2DbEmbedded.getConnection());
         CarService carService = new CarServiceImpl(carRepository);
         carService.addCar("777", "Lada");
@@ -105,6 +105,7 @@ public class CarBootstrapTest {
             result.add(resultSet.getString(1));
             result.add(resultSet.getString(2));
         }
+        System.out.println(Arrays.toString(result.toArray()));
         assertArrayEquals(expectedResult, result.toArray());
     }
 
@@ -112,7 +113,7 @@ public class CarBootstrapTest {
     public void WhenCreateAll() throws Exception{
         List<String> result = new ArrayList();
         List<Car> forAdd = new ArrayList();
-        String[] expectedResult = new String[]{"777", "Lada", "35", "Volvo","45", "BMW", "55", "KIA", "65", "HONDA"};
+        String[] expectedResult = new String[]{"777", "Lada", "35", "Volvo", "45", "BMW", "55", "KIA", "65", "HONDA"};
         CarRepository carRepository = new CarDbRepositoryImpl(H2DbEmbedded.getConnection());
         forAdd.add(new Car("777", "Lada"));
         forAdd.add(new Car("35", "Volvo"));

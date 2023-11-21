@@ -16,16 +16,28 @@ public class CarDbRepositoryImpl implements CarRepository {
     private static final String CREATE_CAR_SQL = "INSERT INTO car (id, model) VALUES (?,?)";
     private static final String UPDATE_CAR_SQL = "UPDATE car SET model = ? WHERE id = ?";
     private static final String SELECT_CAR_BY_ID = "SELECT * FROM car WHERE id = ?";
+    private static final String SELECT_ALL = "SELECT * FROM car";
+    private static final String DELETE_CAR_BY_ID = "DELETE FROM car WHERE id = ?";
+    private static final String DELETE_ALL = "DELETE FROM car";
+    private static final String SELECT_CAR_BY_MODEL = "SELECT * FROM car WHERE model = ?";
 
     private final PreparedStatement createPreStmt;
     private final PreparedStatement updatePreStmt;
     private final PreparedStatement findByIdPreStmt;
+    private final PreparedStatement findAllPreStmt;
+    private final PreparedStatement deleteByIdPreStmt;
+    private final PreparedStatement deleteAllPreStmt;
+    private final PreparedStatement findByModelPreStmt;
 
     public CarDbRepositoryImpl(Connection connection) throws SQLException {
         this.connection = connection;
         this.createPreStmt = connection.prepareStatement(CREATE_CAR_SQL);
         this.updatePreStmt = connection.prepareStatement(UPDATE_CAR_SQL);
         this.findByIdPreStmt = connection.prepareStatement(SELECT_CAR_BY_ID);
+        this.findAllPreStmt = connection.prepareStatement(SELECT_ALL);
+        this.deleteByIdPreStmt = connection.prepareStatement(DELETE_CAR_BY_ID);
+        this.deleteAllPreStmt = connection.prepareStatement(DELETE_ALL);
+        this.findByModelPreStmt = connection.prepareStatement(SELECT_CAR_BY_MODEL);
     }
 
     /**
@@ -67,9 +79,7 @@ public class CarDbRepositoryImpl implements CarRepository {
     @Override
     public Set<Car> findAll() throws SQLException {
         Set<Car> result = new HashSet<>();
-        Statement statement = connection.createStatement();
-        String sql = "SELECT * FROM car";
-        ResultSet resultSet = statement.executeQuery(sql);
+        ResultSet resultSet = findAllPreStmt.executeQuery();
         resultSet.next();
         Car car = new Car(resultSet.getString(1), resultSet.getString(2));
         result.add(car);
@@ -105,9 +115,8 @@ public class CarDbRepositoryImpl implements CarRepository {
      */
     @Override
     public Boolean deleteById(String id) throws SQLException {
-        Statement statement = connection.createStatement();
-        String sql = String.format("DELETE FROM car WHERE id = %s", id);
-        return statement.execute(sql);
+        deleteByIdPreStmt.setString(1, id);
+        return deleteByIdPreStmt.execute();
     }
 
     /**
@@ -116,8 +125,7 @@ public class CarDbRepositoryImpl implements CarRepository {
      */
     @Override
     public Boolean deleteAll() throws SQLException {
-        Statement statement = connection.createStatement();;
-        return statement.execute("DELETE FROM car");
+        return deleteAllPreStmt.execute();
     }
 
     /**
@@ -144,9 +152,8 @@ public class CarDbRepositoryImpl implements CarRepository {
     @Override
     public Set<Car> findByModel(String model) throws SQLException {
         Set<Car> result = new HashSet<>();
-        Statement statement = connection.createStatement();
-        String sql = String.format("SELECT * FROM car WHERE model = '%s'", model);
-        ResultSet resultSet = statement.executeQuery(sql);
+        findByModelPreStmt.setString(1, model);
+        ResultSet resultSet = findByModelPreStmt.executeQuery();
         resultSet.next();
         Car car = new Car(resultSet.getString(1), resultSet.getString(2));
         result.add(car);
