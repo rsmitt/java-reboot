@@ -8,6 +8,6 @@ public interface CarService {
 
     void editModel(String id, String model) throws SQLException;
 
-    void deleteCar(String id);
+    void deleteCar(String id) throws SQLException;
 
 }

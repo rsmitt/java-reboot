@@ -9,19 +9,22 @@ public class H2DbEmbedded implements AutoCloseable {
     private static final String URL_MEM = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1";
     private static final String USER = "sa";
     public static final String PASSWD = "";
-
     private static Connection connection;
 
     public static void initDb() throws SQLException {
-        String createCarTableSql = "CREATE TABLE car ( " +
+        String dropCarTableSql = "DROP TABLE IF EXISTS car";
+        String createCarTableSql = "CREATE TABLE IF NOT EXISTS car ( " +
                 "id VARCHAR(30), " +
                 "model VARCHAR(30)" +
                 ")";
         Connection conn = getConnection();
-        try (Statement statement = conn.createStatement()) {
-            int count = statement.executeUpdate(createCarTableSql);
-            System.out.println(count);
-        }
+        Statement statement = conn.createStatement();
+        statement.executeUpdate(dropCarTableSql);
+        statement.executeUpdate(createCarTableSql);
+//        try (Statement statement = conn.createStatement()) {
+//            int count = statement.executeUpdate(createCarTableSql);
+//            System.out.println(count);
+//        }
     }
 
     public static Connection getConnection() throws SQLException {
