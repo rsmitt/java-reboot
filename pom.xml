@@ -12,6 +12,7 @@
         <module>module04</module>
         <module>module05</module>
         <module>module06</module>
+        <module>module07</module>
     </modules>
     <packaging>pom</packaging>
 
