@@ -1,5 +1,9 @@
 package ru.sberbank.edu;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
+
 public class WeatherProvider {
 
     //    private RestTemplate restTemplate = null;
@@ -13,6 +17,20 @@ public class WeatherProvider {
      * @return weather info or null
      */
     public WeatherInfo get(String city) {
-        return null;
+        RestTemplate restTemplate = new RestTemplate();
+        String fooResourceUrl
+                = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=023750cbc3864418bd55bcbbbcc779b8";
+        ResponseEntity<String> response
+                = restTemplate.getForEntity(fooResourceUrl, String.class);
+
+        if (response.getStatusCode().value() == 200) {
+            WeatherInfo weatherInfo = new WeatherInfo();
+
+
+
+            return weatherInfo;
+        } else {
+            return null;
+        }
     }
 }
