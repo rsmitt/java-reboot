@@ -8,6 +8,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        WeatherInfo weatherInfo = new WeatherInfo();
+        WeatherProvider weatherProvider = new WeatherProvider();
+        weatherProvider.get("Moscow");
     }
 }
