@@ -6,7 +6,7 @@
   <artifactId>homework-javareboot-2023-group-06</artifactId>
   <version>1.0-SNAPSHOT</version>
   <modules>
-    <module>module04</module>
+    <module>module06</module>
   </modules>
   <packaging>pom</packaging>
 
@@ -31,6 +31,12 @@
       <artifactId>assertj-core</artifactId>
       <version>3.24.2</version>
       <scope>test</scope>
+    </dependency>
+	
+	<dependency>
+	    <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>2.1.214</version>
     </dependency>
 
   </dependencies>
