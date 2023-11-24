@@ -10,5 +10,6 @@ public class App
     {
         WeatherProvider weatherProvider = new WeatherProvider();
         weatherProvider.get("Moscow");
+
     }
 }

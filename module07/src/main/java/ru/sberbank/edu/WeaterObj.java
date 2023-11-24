@@ -3,9 +3,9 @@ package ru.sberbank.edu;
 import java.util.Arrays;
 import java.util.Map;
 
-public class Wheater {
+public class WeaterObj {
 
-    private Object[] weather;
+    private MainObj[] weather;
     private Map<String, Float> main;
     private Map<String, Float> wind;
 
@@ -13,7 +13,7 @@ public class Wheater {
         return weather;
     }
 
-    public void setWeather(Object[] weather) {
+    public void setWeather(MainObj[] weather) {
         this.weather = weather;
     }
 
@@ -33,10 +33,10 @@ public class Wheater {
         this.wind = wind;
     }
 
-    public Wheater() {
+    public WeaterObj() {
     }
 
-    public Wheater(String[] weather, Map<String, Float> main, Map<String, Float> wind) {
+    public WeaterObj(MainObj[] weather, Map<String, Float> main, Map<String, Float> wind) {
 
         this.weather = weather;
         this.main = main;
@@ -45,7 +45,7 @@ public class Wheater {
 
     @Override
     public String toString() {
-        return "Wheater{" +
+        return "WeaterObj{" +
                 "weather=" + Arrays.toString(weather) +
                 ", main=" + main +
                 ", wind=" + wind +
