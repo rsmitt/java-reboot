@@ -26,7 +26,6 @@ public class WeatherProvider {
                 = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=023750cbc3864418bd55bcbbbcc779b8";
         ResponseEntity<String> response
                 = restTemplate.getForEntity(fooResourceUrl, String.class);
-        String ans = response.getBody();
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
         WeaterObj wheaterObj = gson.fromJson(response.getBody(), WeaterObj.class);
