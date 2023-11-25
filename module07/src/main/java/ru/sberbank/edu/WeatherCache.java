@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class WeatherCache {
 
+    private Object monitor = new Object();
     private final Map<String, WeatherInfo> cache = new HashMap<>();
     private final WeatherProvider weatherProvider;
 
@@ -28,15 +29,17 @@ public class WeatherCache {
      * @return actual weather info
      */
     public WeatherInfo getWeatherInfo(String city) {
-        WeatherInfo newWeatherInfo;
-        WeatherInfo weatherInfo = cache.get(city);
-        if (weatherInfo != null && (System.currentTimeMillis()
-            - weatherInfo.getExpiryTime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli() < 300000)) {
-            return weatherInfo;
-        } else {
-            newWeatherInfo = weatherProvider.get(city);
-            cache.put(city, newWeatherInfo);
-            return newWeatherInfo;
+        synchronized (monitor) {
+            WeatherInfo newWeatherInfo;
+            WeatherInfo weatherInfo = cache.get(city);
+            if (weatherInfo != null && (System.currentTimeMillis()
+                    - weatherInfo.getExpiryTime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli() < 300000)) {
+                return weatherInfo;
+            } else {
+                newWeatherInfo = weatherProvider.get(city);
+                cache.put(city, newWeatherInfo);
+                return newWeatherInfo;
+            }
         }
     }
 
@@ -44,6 +47,8 @@ public class WeatherCache {
      * Remove weather info from cache.
      **/
     public void removeWeatherInfo(String city) {
-        cache.remove(city);
+        synchronized (monitor) {
+            cache.remove(city);
+        }
     }
 }
