@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+import ru.sberbank.edu.model.MainObj;
+import ru.sberbank.edu.model.WeaterObj;
 
 import java.time.LocalDateTime;
 
@@ -39,8 +41,7 @@ public class WeatherProvider {
             MainObj shortDescription = (MainObj) wheaterObj.getWeather()[0];
             weatherInfo.setShortDescription(shortDescription.getMain());
             weatherInfo.setDescription(shortDescription.getDescription());
-            LocalDateTime dateTime = LocalDateTime.now();
-            weatherInfo.setExpiryTime(dateTime);
+            weatherInfo.setExpiryTime(LocalDateTime.now());
             return weatherInfo;
         } else {
             return null;

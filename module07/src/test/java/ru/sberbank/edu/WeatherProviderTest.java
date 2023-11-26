@@ -1,9 +1,11 @@
 package ru.sberbank.edu;
 
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 import org.testng.annotations.Test;
 
 import java.time.LocalDateTime;
-import java.util.concurrent.TimeUnit;
+import java.time.ZoneOffset;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -11,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 
 public class WeatherProviderTest {
     @Test
-    public void WhenPositiveScenario() throws InterruptedException {
+    public void WhenPositiveScenario() {
         WeatherProvider weatherProvider = new WeatherProvider();
         WeatherCache weatherCache = new WeatherCache(weatherProvider);
         WeatherInfo actualResult = weatherCache.getWeatherInfo("Moscow");
@@ -20,23 +22,26 @@ public class WeatherProviderTest {
     }
 
     @Test
-    public void WhenCacheContainsActualInfo() throws InterruptedException {
+    public void WhenCacheContainsActualInfo() {
         WeatherProvider weatherProvider = new WeatherProvider();
         WeatherCache weatherCache = new WeatherCache(weatherProvider);
         LocalDateTime actualResult = weatherCache.getWeatherInfo("Moscow").getExpiryTime();
-        TimeUnit.SECONDS.sleep(5);
         LocalDateTime expectedResult = weatherCache.getWeatherInfo("Moscow").getExpiryTime();
         assertTrue(actualResult.equals(expectedResult));
     }
 
     @Test
-    public void WhenCacheNotContainsActualInfo() throws InterruptedException {
-        //ДОДЕЛАТЬ
+    public void WhenCacheNotContainsActualInfo(){
         WeatherProvider weatherProvider = new WeatherProvider();
         WeatherCache weatherCache = new WeatherCache(weatherProvider);
-        LocalDateTime actualResult = weatherCache.getWeatherInfo("Moscow").getExpiryTime();
-        TimeUnit.SECONDS.sleep(5);
-        LocalDateTime expectedResult = weatherCache.getWeatherInfo("Moscow").getExpiryTime();
-        assertTrue(actualResult.equals(expectedResult));
+        LocalDateTime data = LocalDateTime.now().minusMinutes(6);
+        LocalDateTime cacheData;
+        try (MockedStatic<LocalDateTime> topDateTimeUtilMock = Mockito.mockStatic(LocalDateTime.class)) {
+            topDateTimeUtilMock.when(() -> LocalDateTime.now()).thenReturn(data);
+            cacheData = weatherCache.getWeatherInfo("Moscow").getExpiryTime();
+            System.out.println(cacheData);
+        }
+        LocalDateTime newCacheData = weatherCache.getWeatherInfo("Moscow").getExpiryTime();
+        assertTrue((newCacheData.toEpochSecond(ZoneOffset.UTC) - cacheData.toEpochSecond(ZoneOffset.UTC)) > 300);
     }
 }

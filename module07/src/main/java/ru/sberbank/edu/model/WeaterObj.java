@@ -1,4 +1,4 @@
-package ru.sberbank.edu;
+package ru.sberbank.edu.model;
 
 import java.util.Arrays;
 import java.util.Map;
