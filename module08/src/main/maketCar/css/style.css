@@ -1,0 +1,13 @@
+body {
+    background-color: Silver;
+    margin-left: 10%;
+    margin-right: 20%;
+}
+#techId {
+    margin-left: 5%;
+    line-height: 40px;
+}
+#varId {
+    border: 2px solid;
+}
+
