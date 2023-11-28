@@ -17,8 +17,8 @@ public class H2DbEmbedded implements AutoCloseable {
                 "id VARCHAR(30), " +
                 "model VARCHAR(30)" +
                 ")";
-        Connection conn = getConnection();
-        try (Statement statement = conn.createStatement()) {
+        connection = getConnection();
+        try (Statement statement = connection.createStatement()) {
             int count = statement.executeUpdate(createCarTableSql);
             System.out.println(count);
         }
@@ -27,6 +27,14 @@ public class H2DbEmbedded implements AutoCloseable {
     public static Connection getConnection() throws SQLException {
         connection = connection == null ? DriverManager.getConnection(URL_MEM, USER, PASSWD) : connection;
         return connection;
+    }
+
+    public static void cleanDb() throws SQLException {
+        String deleteAllFromCarTableSql = "DELETE FROM car";
+        try (Statement statement = connection.createStatement()) {
+            int count = statement.executeUpdate(deleteAllFromCarTableSql);
+            System.out.println(count);
+        }
     }
 
     @Override

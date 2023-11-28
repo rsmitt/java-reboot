@@ -14,16 +14,38 @@ public class CarServiceImpl implements CarService {
         this.carRepository = carRepository;
     }
 
+    /**
+     * Add car to database
+     * @param id - car id
+     * @param model - car model
+     * @throws SQLException
+     */
     @Override
     public void addCar(String id, String model) throws SQLException {
         carRepository.createOrUpdate(new Car(id, model));
     }
 
+    /**
+     * Edit exist car in database
+     * @param id - car id
+     * @param newModel - car new model for replace
+     * @throws SQLException
+     */
     @Override
     public void editModel(String id, String newModel) throws SQLException {
         Optional<Car> optCar = carRepository.findById(id);
         Car car = optCar.orElseThrow();
         updateCarModel(car, newModel);
+    }
+
+    /**
+     * Delete car from database
+     * @param id - car id
+     * @throws SQLException
+     */
+    @Override
+    public void deleteCar(String id) {
+        carRepository.deleteById(id);
     }
 
     private void updateCarModel(Car car, String newModel) {
