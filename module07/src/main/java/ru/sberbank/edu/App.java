@@ -1,13 +1,18 @@
 package ru.sberbank.edu;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import java.io.IOException;
+
+public class App {
+    public static void main(String[] args) throws IOException {
+
+        WeatherProvider weatherProvider = new WeatherProvider();
+        WeatherCache cache = new WeatherCache(weatherProvider);
+
+        cache.getWeatherInfo("Moscow");
+        cache.getWeatherInfo("London");
+
+
+
+        System.out.println(cache.getCache());
     }
 }
