@@ -18,7 +18,7 @@ public class WeatherProvider {
 
     public WeatherInfo get(String city) {
 
-        String API_KEY = "6f33a8ebf2e021a69aa23863586644a6";
+        String API_KEY = "...";
         String URL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + API_KEY;
 
         try {
