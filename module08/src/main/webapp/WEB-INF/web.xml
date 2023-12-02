@@ -4,4 +4,15 @@
 
 <web-app>
     <display-name>Archetype Created Web Application</display-name>
+
+    <servlet>
+        <servlet-name>FinancialCalculator</servlet-name>
+        <servlet-class>ru.sberbank.edu.FinancialServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>FinancialCalculator</servlet-name>
+        <url-pattern>/finance</url-pattern>
+    </servlet-mapping>
+
 </web-app>

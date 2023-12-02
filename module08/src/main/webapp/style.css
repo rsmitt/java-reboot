@@ -1,0 +1,18 @@
+#one {
+	width: 55%;
+}
+
+#button {
+    background-color: #1E90FF;
+    font-size: 100%;
+    position: absolute;
+    border: none;
+    width: 120px;
+    height: 30px;
+}
+
+#numb {
+	width: 70%;
+	background-color: #a7aaad;
+	border: none;
+}

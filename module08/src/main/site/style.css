@@ -1,0 +1,22 @@
+body {
+	background-color: rgb(204, 206, 252, 0.64);
+	margin-left: 5%;
+	margin-right: 5%;
+	font-family: monospace;
+}
+
+.technical {
+	margin-left: 2%;
+}
+
+.link {
+	margin-left: 50%;
+}
+
+.modification {
+	border: 3px solid black;
+}
+
+.centertext {
+	text-align: center;
+}
