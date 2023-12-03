@@ -1,5 +1,6 @@
 package ru.sberbank.edu;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +8,14 @@ public class WeatherCache {
 
     private final Map<String, WeatherInfo> cache = new HashMap<>();
     private final WeatherProvider weatherProvider;
+
+    public Map<String, WeatherInfo> getCache() {
+        return cache;
+    }
+
+    public WeatherProvider getWeatherProvider() {
+        return weatherProvider;
+    }
 
     /**
      * Constructor.
@@ -26,15 +35,27 @@ public class WeatherCache {
      * @param city - city
      * @return actual weather info
      */
-    public WeatherInfo getWeatherInfo(String city) {
-        // should be implemented
-        return null;
+    public WeatherInfo getWeatherInfo(String city) throws IOException {
+        synchronized (WeatherCache.class) {
+            if (cache.containsKey(city)) {
+                if (cache.get(city).isExpired()) {
+                    cache.put(city, weatherProvider.get(city));
+                }
+            } else {
+                if (weatherProvider.get(city) != null) {
+                    cache.put(city, weatherProvider.get(city));
+                }
+            }
+            return cache.get(city);
+        }
     }
 
     /**
      * Remove weather info from cache.
      **/
     public void removeWeatherInfo(String city) {
-        // should be implemented
+        synchronized (WeatherCache.class) {
+            cache.remove(city);
+        }
     }
 }
