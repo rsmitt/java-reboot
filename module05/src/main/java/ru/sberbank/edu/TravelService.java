@@ -21,7 +21,7 @@ public class TravelService {
      */
     public void add(CityInfo cityInfo) throws IllegalArgumentException {
         Stream<CityInfo> streamOfCities = cities.stream();
-        List<CityInfo> citiesResult = streamOfCities.filter(x -> cityInfo.getName().equals(x.getName())).toList();
+        List<CityInfo> citiesResult = streamOfCities.filter(x -> cityInfo.getName().equals(x.getName())).collect(Collectors.toList());
         if (citiesResult.toArray().length > 0) {
             throw new IllegalArgumentException("City already exists");
         } else {
@@ -37,7 +37,7 @@ public class TravelService {
      */
     public void remove(String cityName) throws IllegalArgumentException {
         Stream<CityInfo> streamOfCities = cities.stream();
-        List<CityInfo> citiesResult = streamOfCities.filter(x -> !cityName.equals(x.getName())).toList();
+        List<CityInfo> citiesResult = streamOfCities.filter(x -> !cityName.equals(x.getName())).collect(Collectors.toList());
         if (citiesResult.toArray().length == cities.toArray().length) {
             throw new IllegalArgumentException("City doesn't exist");
         } else {
@@ -65,7 +65,7 @@ public class TravelService {
     public double getDistance(String srcCityName, String destCityName) throws IllegalArgumentException {
         Stream<CityInfo> streamOfCities = cities.stream();
         List<CityInfo> citiesResult = streamOfCities.filter(x -> srcCityName.equals(x.getName()) ||
-                destCityName.equals(x.getName())).toList();
+                destCityName.equals(x.getName())).collect(Collectors.toList());
         if (citiesResult.toArray().length != 2) {
             throw new IllegalArgumentException("Source or destination city doesn't exist");
         } else {
@@ -94,7 +94,7 @@ public class TravelService {
      */
     public List<String> getCitiesNear(String cityName, int radius) throws IllegalArgumentException {
         Stream<CityInfo> streamOfCities = cities.stream();
-        List<CityInfo> searhCity = streamOfCities.filter(x -> cityName.equals(x.getName())).toList();
+        List<CityInfo> searhCity = streamOfCities.filter(x -> cityName.equals(x.getName())).collect(Collectors.toList());
         if (searhCity.toArray().length == 0) {
             throw new IllegalArgumentException("City with cityName city doesn't exis");
         } else {
