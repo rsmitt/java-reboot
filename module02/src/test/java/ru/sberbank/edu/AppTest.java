@@ -1,38 +1,23 @@
 package ru.sberbank.edu;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 /**
- * Unit test for simple App.
+ * Тест всего приложения
  */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
+class AppTest {
+    private final String[] argsTypeD = new String[]{"D", "C:\\Users\\Cos\\IdeaProjects\\java-reboot\\module02\\src\\test\\test.txt", "C:\\Users\\Cos\\IdeaProjects\\java-reboot\\module02\\src\\test\\result.txt"};
+    private final String[] argsTypeF = new String[]{"F", "C:\\Users\\Cos\\IdeaProjects\\java-reboot\\module02\\src\\test\\test.txt", "C:\\Users\\Cos\\IdeaProjects\\java-reboot\\module02\\src\\test\\result.txt"};
+
+    @Test
+    void mainTypeD() {
+        assertAll(() -> App.main(argsTypeD));
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    @Test
+    void mainTypeF() {
+        assertAll(() -> App.main(argsTypeF));
     }
 }
