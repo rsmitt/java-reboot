@@ -1,22 +1,25 @@
 <html>
-
+<%@ page contentType="text/html; charset=UTF-8" %>
 <head>
     <title>Deposit</title>
-    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="styleFin.css">
 </head>
 
 <body>
-<h2>A service for calculating the profitability of a deposit</h2>
-<form method="POST" action="finance">
-Sum: <input name="sum">
-<br>
-Percentage: <input name="percentage">
-<br>
-Years: <input name="years">
-<br>
-<hr>
-<input type="submit" value="Create">
-<br>
+
+<h1>Калькулятор доходности вклада</h1>
+
+    <form method="POST" action="finance">
+        <label>Сумма на момент открытия вклада: </label>
+        <input type="text" name="sum"><br>
+        <label>Процентная ставка:  </label>
+        <input type="text" name="percentage"><br>
+        <label>Количество лет:</label>
+        <input type="text" name="years"><br>
+        <hr>
+        <input type="submit" value="Посчитать">
+    </form>
+
 </body>
 
 </html>

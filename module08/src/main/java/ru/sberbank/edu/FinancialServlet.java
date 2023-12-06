@@ -24,13 +24,23 @@ public class FinancialServlet extends HttpServlet {
     @Override
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
             throws IOException, ServletException {
-        String sum = request.getParameter("sum");
-        String percentage = request.getParameter("percentage");
-        String years = request.getParameter("years");
-        DepositInfo depositInfo = new DepositInfo(sum, percentage, years);
-        HttpSession httpSession = request.getSession();
-        //request.getRequestDispatcher("/index.jsp").forward(request, response);
-        Writer writer = response.getWriter();
-        writer.write("" + Integer.parseInt(sum) * (1 + (Integer.parseInt(percentage) / 100))  * Integer.parseInt(years));
+        try {
+            DepositInfo depositInfo = new DepositInfo(Integer.parseInt(request.getParameter("sum")),
+                    Integer.parseInt(request.getParameter("percentage")),
+                    Integer.parseInt(request.getParameter("years")));
+            if (depositInfo.getSum() > 900000000 || depositInfo.getSum() < 0
+                    || depositInfo.getPercentage() < 0
+                    || depositInfo.getYears() < 0) {
+                request.getRequestDispatcher("/resultError.jsp").forward(request, response);
+            } else {
+                if (depositInfo.getSum() >= 50000) {
+                    request.getRequestDispatcher("/resultSucsess.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("/resultFail.jsp").forward(request, response);
+                }
+            }
+        } catch (NumberFormatException e) {
+            request.getRequestDispatcher("/resultError.jsp").forward(request, response);
+        }
     }
 }

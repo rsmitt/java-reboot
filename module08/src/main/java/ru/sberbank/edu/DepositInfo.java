@@ -2,28 +2,28 @@ package ru.sberbank.edu;
 
 public class DepositInfo {
 
-    private String sum;
-    private String percentage;
-    private String years;
+    private int sum;
+    private int percentage;
+    private int years;
 
     public DepositInfo() {
     }
 
-    public DepositInfo(String sum, String percentage, String years) {
+    public DepositInfo(int sum, int percentage, int years) {
         this.sum = sum;
         this.percentage = percentage;
         this.years = years;
     }
 
-    public String getSum() {
+    public int getSum() {
         return sum;
     }
 
-    public String getPercentage() {
+    public int getPercentage() {
         return percentage;
     }
 
-    public String getYears() {
+    public int getYears() {
         return years;
     }
 
