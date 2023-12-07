@@ -1,4 +1,3 @@
-import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.sberbank.edu.CustomArrayImpl;
