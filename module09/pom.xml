@@ -27,8 +27,13 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>5.3.14</version>
+            <version>6.0.0</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>4.3.19.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
