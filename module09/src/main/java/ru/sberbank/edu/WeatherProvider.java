@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 public class WeatherProvider {
 
     private RestTemplate restTemplate;
+    private String apiKey;
 
     /**
      * Download ACTUAL weather info from internet.
@@ -30,10 +31,13 @@ public class WeatherProvider {
     public void setRestTemplate(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
+    }
 
     public WeatherInfo get(String city) {
         String fooResourceUrl
-                = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=023750cbc3864418bd55bcbbbcc779b8";
+                = "http://api.openweathermap.org/data/2.5/weather?q=" + city + apiKey;
         ResponseEntity<String> response
                 = restTemplate.getForEntity(fooResourceUrl, String.class);
         GsonBuilder builder = new GsonBuilder();
