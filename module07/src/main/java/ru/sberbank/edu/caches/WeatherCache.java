@@ -29,7 +29,7 @@ public class WeatherCache {
      * @param city - city
      * @return actual weather info
      */
-    public WeatherInfo getWeatherInfo(String city) {
+    public synchronized WeatherInfo getWeatherInfo(String city) {
         // should be implemented
         WeatherInfo cacheCity = cache.get(city);
         if((cacheCity != null) && ( java.time.LocalDateTime.now().isAfter(cacheCity.getExpiryTime()))) {
