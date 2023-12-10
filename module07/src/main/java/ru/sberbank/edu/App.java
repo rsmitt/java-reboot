@@ -11,8 +11,6 @@ public class App {
         cache.getWeatherInfo("Moscow");
         cache.getWeatherInfo("London");
 
-
-
         System.out.println(cache.getCache());
     }
 }
