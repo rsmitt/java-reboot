@@ -1,0 +1,43 @@
+#indexBody {
+	background-color: lightsalmon;
+}
+
+#indexOptions {
+	border: solid black 1px;
+	width: 200px;
+	height: fit-content;
+}
+
+.indexParametres ol li:hover {
+	background-color: yellow;
+	width: fit-content;
+	height: fit-content;
+}
+
+ .options ul li:hover {
+	background-color: lightgreen;
+	width: fit-content;
+	height: fit-content;
+}
+
+#indexAuthor {
+	text-align: center;
+}
+
+#authorBody {
+	background-color: lightsalmon;
+}
+
+#authorName {
+	text-align: center;
+}
+
+#authorBack {
+	text-align: center;
+}
+
+#authorFio:hover {
+	background-color: lightgreen;
+	width: fit-content;
+	height: fit-content;
+}
