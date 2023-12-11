@@ -9,14 +9,13 @@ public class App
 {
     public static void main( String[] args ) throws IOException {
         FileWriter writer = new FileWriter("file.txt");
-        writer.write("""
-                Вы помните,
-                Вы всё, конечно, помните,
-                Как я стоял,
-                Приблизившись к стене,
-                Взволнованно ходили вы по комнате
-                И что-то резкое
-                В лицо бросали мне.""");
+        writer.write("Вы помните,\n" +
+                "Вы всё, конечно, помните,\n" +
+                "Как я стоял,\n" +
+                "Приблизившись к стене,\n" +
+                "Взволнованно ходили вы по комнате\n" +
+                "И что-то резкое\n" +
+                "В лицо бросали мне.");
         writer.close();
         File file = new File("file.txt");
         StatisticFile statisticFile = new StatisticFile();
