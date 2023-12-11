@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class WeatherCache {
 
-    private Object monitor = new Object();
+    private final Object monitor = new Object();
     private final Map<String, WeatherInfo> cache = new HashMap<>();
     private WeatherProvider weatherProvider;
 
@@ -20,14 +20,11 @@ public class WeatherCache {
      *
      * @param weatherProvider - weather provider
      */
-    public WeatherCache() {
-    }
 
     @Autowired
-    public void setWeatherProvider(WeatherProvider weatherProvider) {
+    public WeatherCache(WeatherProvider weatherProvider) {
         this.weatherProvider = weatherProvider;
     }
-
 
     /**
      * Get ACTUAL weather info for current city or null if current city not found.

@@ -31,7 +31,7 @@ public class MyConfig {
 
     @Bean
     public WeatherCache weatherCache() {
-        WeatherCache weatherCache = new WeatherCache();
+        WeatherCache weatherCache = new WeatherCache(weatherProvider());
         return weatherCache;
     }
 }
