@@ -16,6 +16,18 @@ public class Deposit {
         this(0, 0, 0);
     }
 
+    public double getAmount() {
+        return amount;
+    }
+
+    public double getInterest() {
+        return interest;
+    }
+
+    public double getTenor() {
+        return tenor;
+    }
+
     public double getAmountAtMaturity() {
         return amount * Math.pow(1 + interest / 100, tenor);
     }
