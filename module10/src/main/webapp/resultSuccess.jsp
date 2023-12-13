@@ -1,5 +1,6 @@
 <html>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page isELIgnored="false" %>
 <head>
     <title>Deposit</title>
     <link rel="stylesheet" type="text/css" href="css/styleFin.css">
@@ -7,10 +8,9 @@
 
 <body>
 
-<h1>Ошибка</h1>
+<h1>Результат</h1>
 
-<p>Минимальная сумма на момент <br>
-открытия вклада 50 000 рублей</p>
+<p>Итоговая сумма ${sum} рублей</p>
 
 </body>
 

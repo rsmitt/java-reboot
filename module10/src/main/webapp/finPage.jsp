@@ -2,14 +2,14 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <head>
     <title>Deposit</title>
-    <link rel="stylesheet" type="text/css" href="styleFin.css">
+    <link  rel="stylesheet" type="text/css" href="/finance/css/styleFin.css">
 </head>
 
 <body>
 
 <h1>Калькулятор доходности вклада</h1>
 
-    <form method="POST" action="finance">
+    <form method="POST">
         <label>Сумма на момент открытия вклада: </label>
         <input type="text" name="sum"><br>
         <label>Процентная ставка:  </label>
