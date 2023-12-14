@@ -3,20 +3,27 @@ package ru.sberbank.edu;
 /**
  * Weather provider
  */
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+@Service
 public class WeatherProvider {
+    private final RestTemplate restTemplate;
 
-//    private RestTemplate restTemplate;
-//    private String appKey;
+    @Value("${app.apiurl}")
+    private String apiUrl;
 
-    /**
-     * Download ACTUAL weather info from internet.
-     * You should call GET http://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-     * You should use Spring Rest Template for calling requests
-     *
-     * @param city - city
-     * @return weather info or null
-     */
+    @Value("${app.apikey}")
+    private String apiKey;
+
+    @Autowired
+    public WeatherProvider(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+
     public WeatherInfo get(String city) {
-        return null;
+        return restTemplate.getForObject(apiUrl, WeatherInfo.class, city, apiKey);
     }
 }
