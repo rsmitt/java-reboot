@@ -1,5 +1,6 @@
 package ru.sberbank.edu;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ public class WeatherCache {
      * @param weatherProvider - weather provider
      */
     public WeatherCache(WeatherProvider weatherProvider) {
+
         this.weatherProvider = weatherProvider;
     }
 
@@ -26,15 +28,19 @@ public class WeatherCache {
      * @param city - city
      * @return actual weather info
      */
-    public WeatherInfo getWeatherInfo(String city) {
-        // should be implemented
-        return null;
+    public synchronized WeatherInfo getWeatherInfo(String city) {
+        WeatherInfo result = cache.get(city);
+        if (result == null || result.getExpiryTime().isBefore(LocalDateTime.now())) {
+            result = weatherProvider.get(city);
+            cache.put(city, result);
+        }
+        return result;
     }
 
     /**
      * Remove weather info from cache.
      **/
-    public void removeWeatherInfo(String city) {
-        // should be implemented
+    public synchronized void removeWeatherInfo(String city) {
+        cache.remove(city);
     }
 }
