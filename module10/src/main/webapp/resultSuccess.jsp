@@ -3,7 +3,7 @@
 <%@ page isELIgnored="false" %>
 <head>
     <title>Deposit</title>
-    <link rel="stylesheet" type="text/css" href="css/styleFin.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styleFin.css">
 </head>
 
 <body>
