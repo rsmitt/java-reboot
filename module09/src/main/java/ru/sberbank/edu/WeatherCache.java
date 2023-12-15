@@ -1,12 +1,18 @@
 package ru.sberbank.edu;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WeatherCache {
+@Component
+public class WeatherCache implements WeatherCacheInterface{
 
     private final Map<String, WeatherInfo> cache = new HashMap<>();
+
+    @Autowired
     private final WeatherProvider weatherProvider;
 
     /**
@@ -14,6 +20,7 @@ public class WeatherCache {
      *
      * @param weatherProvider - weather provider
      */
+    @Autowired
     public WeatherCache(WeatherProvider weatherProvider) {
         this.weatherProvider = weatherProvider;
     }
@@ -27,12 +34,13 @@ public class WeatherCache {
      * @param city - city
      * @return actual weather info
      */
+    @Override
     public synchronized WeatherInfo getWeatherInfo(String city) {
         LocalDateTime localDateTime = LocalDateTime.now();
         System.out.println(localDateTime);
         WeatherInfo wi = null;
         if (!cache.containsKey(city)) {
-            WeatherProvider weatherProvider = new WeatherProvider();
+//            WeatherProvider weatherProvider = new WeatherProvider();
             wi = weatherProvider.get(city);
             if (wi == null) {
                 System.out.println("INCORRECT REQUEST!");
@@ -46,7 +54,7 @@ public class WeatherCache {
                 if (item.getKey().equalsIgnoreCase(city)) {
                     wi = item.getValue();
                     if (localDateTime.compareTo(wi.getExpiryTime())>0) {
-                        WeatherProvider weatherProvider = new WeatherProvider();
+//                        WeatherProvider weatherProvider = new WeatherProvider();
                         removeWeatherInfo(city);
                         System.out.println("UPDATE NOTE IN CACHE");
                         wi = weatherProvider.get(city);
@@ -64,6 +72,7 @@ public class WeatherCache {
     /**
      * Remove weather info from cache.
      **/
+    @Override
     public synchronized void removeWeatherInfo(String city) {
         cache.remove(city);
     }
