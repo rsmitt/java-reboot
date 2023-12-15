@@ -1,5 +1,6 @@
 <html>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page isELIgnored="false" %>
 <head>
     <title>Deposit</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styleFin.css">
@@ -10,7 +11,7 @@
 <h1>Ошибка</h1>
 
 <p>Минимальная сумма на момент <br>
-открытия вклада 50 000 рублей</p>
+открытия вклада ${minSum} рублей</p>
 
 </body>
 

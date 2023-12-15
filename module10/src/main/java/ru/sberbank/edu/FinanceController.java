@@ -1,5 +1,6 @@
 package ru.sberbank.edu;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -9,6 +10,9 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/finance")
 public class FinanceController {
+
+    @Value("${minSum}")
+    private String minSum;
 
     @GetMapping("/")
     public ModelAndView info() {
@@ -30,7 +34,7 @@ public class FinanceController {
                 modelAndView.setViewName("/resultError.jsp");
                 return modelAndView;
             } else {
-                if (depositInfo.getSum() >= 50000) {
+                if (depositInfo.getSum() >= Integer.parseInt(minSum)) {
                     String sum = String.format("%8.2f", Integer.parseInt(body.get("sum")) *
                             (Math.pow(1.0 + (Integer.parseInt(body.get("percentage")) / 100.0 / 12),
                                     Integer.parseInt(body.get("years")) * 12)));
@@ -38,6 +42,7 @@ public class FinanceController {
                     modelAndView.setViewName("/resultSuccess.jsp");
                     return modelAndView;
                 } else {
+                    modelAndView.addObject("minSum", minSum);
                     modelAndView.setViewName("/resultFail.jsp");
                     return modelAndView;
                 }

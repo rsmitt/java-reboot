@@ -14,4 +14,6 @@
     <context:component-scan base-package="ru.sberbank.edu"/>
     <mvc:annotation-driven/>
     <mvc:resources mapping="/css/**" location="/css/" />
+    <context:property-placeholder location="classpath:app.properties"/>
+
 </beans>
