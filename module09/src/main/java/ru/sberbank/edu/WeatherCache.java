@@ -1,21 +1,9 @@
 package ru.sberbank.edu;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Weather cache.
  */
-public class WeatherCache {
-
-    private final Map<String, WeatherInfo> cache = new HashMap<>();
-    private WeatherProvider weatherProvider;
-
-    /**
-     * Default constructor.
-     */
-    public WeatherCache() {
-    }
+public interface WeatherCache {
 
     /**
      * Get ACTUAL weather info for current city or null if current city not found.
@@ -26,15 +14,10 @@ public class WeatherCache {
      * @param city - city
      * @return actual weather info
      */
-    public WeatherInfo getWeatherInfo(String city) {
-        // should be implemented
-        return null;
-    }
+    public WeatherInfo getWeatherInfo(String city);
 
     /**
      * Remove weather info from cache.
      **/
-    public void removeWeatherInfo(String city) {
-        // should be implemented
-    }
+    public void removeWeatherInfo(String city);
 }

@@ -1,13 +1,9 @@
 package ru.sberbank.edu;
 
 /**
- * Weather provider
+ * Weather provider interface
  */
-public class WeatherProvider {
-
-//    private RestTemplate restTemplate;
-//    private String appKey;
-
+public interface WeatherProvider {
     /**
      * Download ACTUAL weather info from internet.
      * You should call GET http://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
@@ -16,7 +12,5 @@ public class WeatherProvider {
      * @param city - city
      * @return weather info or null
      */
-    public WeatherInfo get(String city) {
-        return null;
-    }
+    public WeatherInfo get(String city);
 }
