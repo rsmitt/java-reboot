@@ -1,11 +1,9 @@
 package ru.sberbank.edu;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 /**
  * Weather provider
  */
-public interface WeatherProvider {
+public class WeatherProvider {
 
 //    private RestTemplate restTemplate;
 //    private String appKey;
@@ -18,5 +16,7 @@ public interface WeatherProvider {
      * @param city - city
      * @return weather info or null
      */
-    public WeatherInfo get(String city) throws JsonProcessingException;
+    public WeatherInfo get(String city) {
+        return null;
+    }
 }

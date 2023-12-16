@@ -1,13 +1,21 @@
 package ru.sberbank.edu;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Weather cache.
  */
-public interface WeatherCache {
+public class WeatherCache {
+
+    private final Map<String, WeatherInfo> cache = new HashMap<>();
+    private WeatherProvider weatherProvider;
+
+    /**
+     * Default constructor.
+     */
+    public WeatherCache() {
+    }
 
     /**
      * Get ACTUAL weather info for current city or null if current city not found.
@@ -18,10 +26,15 @@ public interface WeatherCache {
      * @param city - city
      * @return actual weather info
      */
-    public WeatherInfo getWeatherInfo(String city) throws IOException;
+    public WeatherInfo getWeatherInfo(String city) {
+        // should be implemented
+        return null;
+    }
 
     /**
      * Remove weather info from cache.
      **/
-    public void removeWeatherInfo(String city);
+    public void removeWeatherInfo(String city) {
+        // should be implemented
+    }
 }
