@@ -1,0 +1,30 @@
+body {
+    background-color: Silver;
+    margin-left: 10%;
+    margin-right: 20%;
+}
+
+
+input[type=submit] {
+    padding:5px 15px;
+    background:#4682B4;
+    cursor:pointer;
+    font-size: 15px;
+
+}
+
+label {
+width: 310px;
+display:inline-block;
+font-size: 18px;
+padding:5px;
+
+}
+
+p {
+font-size: 18px;
+}
+
+
+
+
