@@ -1,4 +1,4 @@
-package com.example.module11.entity;
+package ru.sberbank.edu.entity;
 
 public class User {
 
