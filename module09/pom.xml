@@ -6,10 +6,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>module09</artifactId>
     <packaging>jar</packaging>
-
     <name>module09</name>
     <dependencies>
         <dependency>

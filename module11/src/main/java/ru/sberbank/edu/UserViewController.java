@@ -11,10 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/user", consumes = MediaType.ALL_VALUE)
 public class UserViewController {
 
-    @GetMapping
+    @GetMapping("/page")
     public ModelAndView info() {
         ModelAndView modelAndView = new ModelAndView();
-        System.out.println("Inside UserController");
         modelAndView.setViewName("user");
         return modelAndView;
     }
