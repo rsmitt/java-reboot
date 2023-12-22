@@ -6,7 +6,7 @@
   <artifactId>homework-javareboot-2023-group-06</artifactId>
   <version>1.0-SNAPSHOT</version>
   <modules>
-    <module>module09</module>
+    <module>module10</module>
   </modules>
   <packaging>pom</packaging>
 

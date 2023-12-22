@@ -1,0 +1,47 @@
+body {
+    background-color: antiquewhite;
+}
+
+h1 {
+    color: darkslategray;
+    text-align: center;
+}
+
+h2 {
+    color: darkslategray;
+}
+
+h3 {
+    text-align: center;
+}
+
+.elantra {
+    width: 100%;
+    text-align: center;
+}
+
+.form {
+    width: 100%;
+    text-align: center;
+}
+
+.button {
+    width: 100%;
+    text-align: center;
+}
+
+.photo {
+    width: 600px;
+}
+
+#complectations {
+    margin-left: 37%;
+    text-align: center;
+    border: 1px solid darkslategray;
+    padding: 30px;
+    display: inline-block;
+}
+
+.author {
+    text-align: center;
+}
