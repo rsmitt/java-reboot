@@ -1,4 +1,4 @@
-package controller;
+package com.example.module11.controller;
 
 import com.example.module11.entity.MyUser;
 import com.example.module11.repository.UserRepository;
@@ -13,7 +13,7 @@ import java.util.Map;
 @RequestMapping("/users")
 public class UserController {
     private  UserRepository userRepository;
-    @Autowired
+
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }

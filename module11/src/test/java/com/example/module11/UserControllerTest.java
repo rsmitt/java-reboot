@@ -3,7 +3,7 @@ package com.example.module11;
 import com.example.module11.entity.MyUser;
 import com.example.module11.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import controller.UserController;
+import com.example.module11.controller.UserController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
