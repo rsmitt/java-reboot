@@ -3,20 +3,15 @@
     <meta charset="UTF-8">
     <title>User</title>
     <link rel="stylesheet" type="text/css" href="/css/styleFin.css" />
-
 </head>
 
 <body>
-<h1>Список всех пользователей</h1>
 
-<tr th:each="user : ${users}">
-    <td th:text="${user.getId()}"></td>
-    <td th:text="${user.getName()}"></td>
-    <td th:text="${user.getAge()}"></td>
-    <br>
-</tr>
+<h1>Результат</h1>
 
+<p>Действие выполнено успешно!</p>
 <hr>
 <a href="/api/v1/user/page">Вернуться на главную</a>
 </body>
+
 </html>

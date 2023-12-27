@@ -8,10 +8,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.ModelAndView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.sberbank.edu.entity.User;
+import ru.sberbank.edu.exception.ItemNotFoundException;
 import ru.sberbank.edu.service.UserService;
 
 import java.util.List;
@@ -35,7 +37,9 @@ public class UserController {
 
     @GetMapping("/getUsersPage")
     public ModelAndView getUsers() {
+        List<User> users = service.findAll();
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("users", users);
         modelAndView.setViewName("getUsers");
         return modelAndView;
     }
@@ -48,10 +52,21 @@ public class UserController {
     }
 
     @PostMapping("/addUser")
-    public ModelAndView postUser() {
+    public ModelAndView postUser(@RequestParam("id") Long id, @RequestParam("name") String name,
+            @RequestParam("age") Integer age) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("postUser");
-        return modelAndView;
+        try {
+            User user = new User(id, name, age);
+            if (service.findById(user.getId()).getId() == user.getId()) {
+                modelAndView.setViewName("resultAddError");
+            }
+            return modelAndView;
+        } catch (ItemNotFoundException e) {
+            User user = new User(id, name, age);
+            service.save(user);
+            modelAndView.setViewName("resultSucsess");
+            return modelAndView;
+        }
     }
 
     @GetMapping("/deleteUserPage")
@@ -62,10 +77,19 @@ public class UserController {
     }
 
     @PostMapping("/deleteUser")
-    public ModelAndView deleteUser() {
+    public ModelAndView deleteUser(@RequestParam("id") Long id) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("deleteUser");
-        return modelAndView;
+        try {
+            service.deleteById(id);
+            modelAndView.setViewName("resultSucsess");
+            return modelAndView;
+        } catch (MethodArgumentTypeMismatchException e) {
+            modelAndView.setViewName("resultError");
+            return modelAndView;
+        }  catch (ItemNotFoundException e) {
+            modelAndView.setViewName("resultFail");
+            return modelAndView;
+        }
     }
 
     @GetMapping("/editUserPage")
@@ -76,10 +100,24 @@ public class UserController {
     }
 
     @PostMapping("/editUser")
-    public ModelAndView editUser() {
+    public ModelAndView editUser(@RequestParam("id") Long id, @RequestParam("name") String name,
+                                 @RequestParam("age") Integer age) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("editUser");
-        return modelAndView;
+        try {
+            User user = new User(id, name, age);
+            if (service.findById(user.getId()).getId() == user.getId()) {
+                service.update(user);
+                modelAndView.setViewName("resultSucsess");
+                return modelAndView;
+            } else {
+                modelAndView.setViewName("resultFail");
+                return modelAndView;
+
+            }
+        } catch (IllegalArgumentException e) {
+            modelAndView.setViewName("resultError");
+            return modelAndView;
+        }
     }
 
 

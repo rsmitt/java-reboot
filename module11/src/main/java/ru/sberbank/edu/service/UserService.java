@@ -22,13 +22,13 @@ public class UserService {
         return repository.findById(id).orElseThrow(() -> new ItemNotFoundException("User not found, id = " + id));
     }
 
-    public User save(User car) {
-        return repository.save(car);
+    public User save(User user) {
+        return repository.save(user);
     }
 
-    public User update(User car) {
-        findById(car.getId());
-        return repository.save(car);
+    public User update(User user) {
+        findById(user.getId());
+        return repository.save(user);
     }
 
     public void deleteById(Long id) {

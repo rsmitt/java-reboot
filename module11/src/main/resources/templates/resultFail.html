@@ -7,16 +7,13 @@
 </head>
 
 <body>
-<h1>Список всех пользователей</h1>
 
-<tr th:each="user : ${users}">
-    <td th:text="${user.getId()}"></td>
-    <td th:text="${user.getName()}"></td>
-    <td th:text="${user.getAge()}"></td>
-    <br>
-</tr>
+<h1>Ошибка</h1>
 
+<p>Такого пользователя не существует!</p>
 <hr>
 <a href="/api/v1/user/page">Вернуться на главную</a>
+
 </body>
+
 </html>
