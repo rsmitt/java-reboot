@@ -1,14 +1,9 @@
 package ru.sberbank.edu.controller;
 
-
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.ModelAndView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,8 +47,9 @@ public class UserController {
     }
 
     @PostMapping("/addUser")
-    public ModelAndView postUser(@RequestParam("id") Long id, @RequestParam("name") String name,
-            @RequestParam("age") Integer age) {
+    public ModelAndView postUser(@RequestParam("id") Long id,
+                                 @RequestParam("age") Integer age,
+                                 @RequestParam("name") String name) {
         ModelAndView modelAndView = new ModelAndView();
         try {
             User user = new User(id, name, age);
@@ -77,14 +73,12 @@ public class UserController {
     }
 
     @PostMapping("/deleteUser")
-    public ModelAndView deleteUser(@RequestParam("id") Long id) {
+    public ModelAndView deleteUser(
+            @RequestParam(value = "id", required = false) Long id) {
         ModelAndView modelAndView = new ModelAndView();
         try {
             service.deleteById(id);
             modelAndView.setViewName("resultSucsess");
-            return modelAndView;
-        } catch (MethodArgumentTypeMismatchException e) {
-            modelAndView.setViewName("resultError");
             return modelAndView;
         }  catch (ItemNotFoundException e) {
             modelAndView.setViewName("resultFail");
@@ -100,11 +94,12 @@ public class UserController {
     }
 
     @PostMapping("/editUser")
-    public ModelAndView editUser(@RequestParam("id") Long id, @RequestParam("name") String name,
+    public ModelAndView editUser(@RequestParam("id") Long id,
+                                 @RequestParam("name") String name,
                                  @RequestParam("age") Integer age) {
         ModelAndView modelAndView = new ModelAndView();
         try {
-            User user = new User(id, name, age);
+            User user = new User((long) id, name, age);
             if (service.findById(user.getId()).getId() == user.getId()) {
                 service.update(user);
                 modelAndView.setViewName("resultSucsess");
@@ -118,15 +113,5 @@ public class UserController {
             modelAndView.setViewName("resultError");
             return modelAndView;
         }
-    }
-
-
-
-    @GetMapping
-    @Operation(summary = "Get all users")
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = service.findAll();
-        logger.info("getting users list: {}", users);
-        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 }
