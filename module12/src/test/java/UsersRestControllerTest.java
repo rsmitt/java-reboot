@@ -8,9 +8,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import ru.edu.module12.controller.UserController;
+import ru.edu.module12.controller.UsersRestController;
 import ru.edu.module12.entity.MyUser;
-import ru.edu.module12.repository.UserRepository;
+import ru.edu.module12.repository.MyUserRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,25 +26,25 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootConfiguration
-public class UserControllerTest {
+public class UsersRestControllerTest {
 
     @Mock
-    private UserRepository userRepository;
+    private MyUserRepository myUserRepository;
 
     @InjectMocks
-    private UserController userController;
+    private UsersRestController usersRestController;
 
     private MockMvc mockMvc;
 
     @BeforeEach
     public void setup() {
-        mockMvc = standaloneSetup(userController).build();
+        mockMvc = standaloneSetup(usersRestController).build();
     }
 
     @Test
     public void testGetUsers() throws Exception {
         List<MyUser> users = Arrays.asList(new MyUser(1L, "Alice", 30), new MyUser(2L, "Bob", 25));
-        given(userRepository.findAll()).willReturn(users);
+        given(myUserRepository.findAll()).willReturn(users);
 
         mockMvc.perform(get("/users"))
                 .andExpect(status().isOk())
@@ -56,7 +56,7 @@ public class UserControllerTest {
     public void testCreateUser() throws Exception {
         MyUser newUser = new MyUser(null, "Charlie", 35);
         MyUser savedUser = new MyUser(3L, "Charlie", 35);
-        given(userRepository.save(any(MyUser.class))).willReturn(savedUser);
+        given(myUserRepository.save(any(MyUser.class))).willReturn(savedUser);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String userJson = objectMapper.writeValueAsString(newUser);
@@ -74,8 +74,8 @@ public class UserControllerTest {
         Long userId = 1L;
         MyUser existingUser = new MyUser(userId, "Alice", 30);
         MyUser updatedUser = new MyUser(userId, "Alice Updated", 35);
-        given(userRepository.findById(userId)).willReturn(Optional.of(existingUser));
-        given(userRepository.save(existingUser)).willReturn(updatedUser);
+        given(myUserRepository.findById(userId)).willReturn(Optional.of(existingUser));
+        given(myUserRepository.save(existingUser)).willReturn(updatedUser);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String userJson = objectMapper.writeValueAsString(updatedUser);
@@ -92,8 +92,8 @@ public class UserControllerTest {
     public void testDeleteUser() throws Exception {
         Long userId = 1L;
         MyUser existingUser = new MyUser(userId, "Alice", 30);
-        given(userRepository.findById(userId)).willReturn(Optional.of(existingUser));
-        doNothing().when(userRepository).delete(existingUser);
+        given(myUserRepository.findById(userId)).willReturn(Optional.of(existingUser));
+        doNothing().when(myUserRepository).delete(existingUser);
 
         mockMvc.perform(delete("/users/{id}", userId))
                 .andExpect(status().isOk())
@@ -104,7 +104,7 @@ public class UserControllerTest {
     public void testGetUserById() throws Exception {
         Long userId = 1L;
         MyUser user = new MyUser(userId, "Alice", 30);
-        given(userRepository.findById(userId)).willReturn(Optional.of(user));
+        given(myUserRepository.findById(userId)).willReturn(Optional.of(user));
 
         mockMvc.perform(get("/users/{id}", userId))
                 .andExpect(status().isOk()).andExpect(jsonPath("$.name").value("Alice"))

@@ -1,6 +1,6 @@
 logging:
   level:
-    root: INFO
+    root: WARN
 
 server:
   port: 8080
@@ -13,6 +13,7 @@ spring:
     username: sa
     password:
   jpa:
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: create-drop
     properties:
@@ -24,3 +25,6 @@ spring:
     console:
       enabled: true
       path: /h2-console
+  sql:
+    init:
+      mode: always
