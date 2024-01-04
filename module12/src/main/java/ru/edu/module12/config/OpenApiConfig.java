@@ -7,14 +7,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-// https://habr.com/ru/post/541592/
 @Configuration
 public class OpenApiConfig {
     @Bean
     public OpenAPI customOpenAPI(@Value("${service.description}") String appDescription, @Value("${service.version}") String appVersion) {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Car service API")
+                        .title("User service API")
                         .version(appVersion)
                         .description(appDescription)
                         .termsOfService("http://swagger.io/terms/")

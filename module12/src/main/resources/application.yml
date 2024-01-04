@@ -16,11 +16,9 @@ spring:
 server:
   port: 8080
 
-
 logging:
   level:
-    ru.edu: info
-  path: userService.log
+    ru.edu.module12: info
 
 service:
   description: User service
