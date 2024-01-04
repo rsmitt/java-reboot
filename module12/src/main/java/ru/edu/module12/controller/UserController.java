@@ -1,5 +1,6 @@
 package ru.edu.module12.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -25,6 +26,7 @@ public class UserController {
     private final UserService service;
 
     @GetMapping
+    @Operation(summary = "Get all users")
     public ResponseEntity<List<User>> findAll() {
         List<User> users = service.findAll();
         logger.info("getting user list {}", users);
