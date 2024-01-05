@@ -1,11 +1,16 @@
 package ru.sberbank.edu;
 
-// интерфейс можно менять
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public interface Statistic {
 
-    int getLineCount();
-    int getSpaceCount();
-    String getLongestLine();
-    void save(int lineCount, int spaceCount, String line);
+    int getLineCount(File file) throws IOException;
+    int getSpaceCount(File file) throws IOException;
+    String getLongestLine(File file) throws IOException;
+
+
+    void save(Save save, int lineCount, int spaceCount, String line) throws IOException;
 
 }
