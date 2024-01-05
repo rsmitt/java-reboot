@@ -34,11 +34,13 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Get user details")
     public User getUserById(@PathVariable("id") long userId) {
         return service.findById(userId);
     }
 
     @PostMapping
+    @Operation(summary = "Create a new user")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         service.save(user);
         HttpHeaders headers = new HttpHeaders();
@@ -48,12 +50,14 @@ public class UserController {
     }
 
     @PutMapping
+    @Operation(summary = "Update a user")
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         service.update(user);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{userId}")
+    @Operation(summary = "Delete a user by id")
     public ResponseEntity<User> deleteById(@PathVariable long userId) {
         service.deleteById(userId);
         return ResponseEntity.ok().build();
