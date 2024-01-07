@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Калькулятор доходности вклада</title>
+</head>
+<body>
+<h1>Калькулятор доходности вклада</h1>
+<form th:action="@{/finance}" th:object="${financeForm}" method="post">
+    <div>
+        <label for="sum">Сумма на момент открытия:</label>
+        <input type="number" id="sum" th:field="*{sum}" step="0.01" min="0" required />
+    </div>
+    <div>
+        <label for="percentage">Процентная ставка:</label>
+        <input type="number" id="percentage" th:field="*{percentage}" step="0.01" min="0" required />
+    </div>
+    <div>
+        <label for="years">Количество лет:</label>
+        <input type="number" id="years" th:field="*{years}" min="1" required />
+    </div>
+    <div th:if="${error}" th:text="${error}"></div>
+    <div>
+        <button type="submit">Посчитать</button>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Результат расчета</title>
+</head>
+<body>
+<h1>Результат расчета</h1>
+<p th:text="'Ваш вклад через ' + ${financeForm.years} + ' лет(год) будет равен: ' + ${amount} + ' руб.'"></p>
+<a href="/finance">Рассчитать ещё раз</a>
+</body>
+</html>
