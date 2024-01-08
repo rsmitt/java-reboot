@@ -1,0 +1,35 @@
+body {
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+p {
+    margin-left: 5%;
+}
+
+div {
+    margin-left: 10%;
+}
+
+img {
+    float: left;
+}
+
+h1 {
+    margin-left: 5%;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+table {
+    margin-left: 5%;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+td {
+    text-align: left
+}
