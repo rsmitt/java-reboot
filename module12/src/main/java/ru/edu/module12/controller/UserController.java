@@ -39,29 +39,5 @@ public class UserController {
         return service.findById(userId);
     }
 
-    @PostMapping
-    @Operation(summary = "Create a new user")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        service.save(user);
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", "api/v1/users/" + user.getId());
-        return new ResponseEntity<>(null, headers, HttpStatus.CREATED);
-
-    }
-
-    @PutMapping
-    @Operation(summary = "Update a user")
-    public ResponseEntity<User> updateUser(@RequestBody User user) {
-        service.update(user);
-        return ResponseEntity.ok().build();
-    }
-
-    @DeleteMapping("/{userId}")
-    @Operation(summary = "Delete a user by id")
-    public ResponseEntity<User> deleteById(@PathVariable long userId) {
-        service.deleteById(userId);
-        return ResponseEntity.ok().build();
-    }
-
 
 }

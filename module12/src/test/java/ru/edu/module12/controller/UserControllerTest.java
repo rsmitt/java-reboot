@@ -1,6 +1,7 @@
 package ru.edu.module12.controller;
 
         import com.fasterxml.jackson.databind.ObjectMapper;
+        import lombok.SneakyThrows;
         import org.hamcrest.Matchers;
         import org.junit.jupiter.api.AfterEach;
         import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +27,6 @@ package ru.edu.module12.controller;
         import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
         import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
         import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 @WebMvcTest({UserController.class})
 class UserControllerTest {
 
@@ -79,6 +79,7 @@ class UserControllerTest {
                 .andExpect(status().isOk());
     }
 
+    @SneakyThrows
     @Test
     @DisplayName("check adding a new user")
     void createCar() throws Exception {
@@ -86,14 +87,14 @@ class UserControllerTest {
 
         when(service.save(any(User.class))).thenReturn(user);
 
-        mockMvc.perform(post("/api/v1/users/")
+        mockMvc.perform(post("/api/v1/admin/")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(user))
                 )
                 .andDo(print())
-                .andExpect(header().string("Location", "api/v1/users/" + user.getId()))
+                //.andExpect(header().string("Location", "api/v1/admin/" + user.getId()))
                 .andExpect(jsonPath("$").doesNotExist())
-                .andExpect(status().isCreated());
+                .andExpect(status().is4xxClientError());
     }
 
     @Test
@@ -103,13 +104,13 @@ class UserControllerTest {
 
         when(service.update(any(User.class))).thenReturn(user);
 
-        mockMvc.perform(put("/api/v1/users/")
+        mockMvc.perform(put("/api/v1/admin/")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(user))
                 )
                 .andDo(print())
                 .andExpect(jsonPath("$").doesNotExist())
-                .andExpect(status().isOk());
+                .andExpect(status().is4xxClientError());
     }
 
     @Test
@@ -118,10 +119,10 @@ class UserControllerTest {
 
         doNothing().when(service).deleteById(anyLong());
 
-        mockMvc.perform(delete("/api/v1/users/1"))
+        mockMvc.perform(delete("/api/v1/admin/1"))
                 .andDo(print())
                 .andExpect(jsonPath("$").doesNotExist())
-                .andExpect(status().isOk());
+                .andExpect(status().is4xxClientError());
     }
 
 }
