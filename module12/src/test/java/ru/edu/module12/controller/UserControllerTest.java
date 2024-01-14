@@ -12,6 +12,7 @@ package ru.edu.module12.controller;
         import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
         import org.springframework.boot.test.mock.mockito.MockBean;
         import org.springframework.http.MediaType;
+        import org.springframework.security.test.context.support.WithMockUser;
         import org.springframework.test.web.servlet.MockMvc;
         import ru.edu.module12.entity.User;
         import ru.edu.module12.service.UserService;
@@ -115,6 +116,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("check deleting a user by id")
+    @WithMockUser(username = "admin", roles = "ADMIN")
     void deleteCarById() throws Exception {
 
         doNothing().when(service).deleteById(anyLong());
@@ -122,7 +124,6 @@ class UserControllerTest {
         mockMvc.perform(delete("/api/v1/admin/1"))
                 .andDo(print())
                 .andExpect(jsonPath("$").doesNotExist())
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().isOk());
     }
-
 }
