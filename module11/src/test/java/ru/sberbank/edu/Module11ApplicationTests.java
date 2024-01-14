@@ -1,4 +1,4 @@
-package com.example.module11;
+package ru.sberbank.edu;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

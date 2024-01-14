@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+    <link rel="stylesheet" type="text/css" href="/css/styleFin.css" />
+
+</head>
+
+<body>
+<h1>Страница изменения данных о пользователях</h1>
+
+<form method="POST" action="/api/v1/user/editUser">
+    <label>Ввеите ID пользователя: </label>
+    <input type="text" name="id"><br>
+    <label>Ввеите имя пользователя:  </label>
+    <input type="text" name="name"><br>
+    <label>Ввеите возраст пользователя:</label>
+    <input type="text" name="age"><br>
+    <input type="submit" value="Изменить"><br>
+</form>
+<hr>
+<a href="/api/v1/user/page">Вернуться на главную</a>
+</body>
+</html>
