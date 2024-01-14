@@ -50,7 +50,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("check receiving all users")
-    void getAllCars() throws Exception {
+    void getAllUsers() throws Exception {
         List<User> users = new ArrayList<>(Arrays.asList(
                 new User(1L, "Anton", 30),
                 new User(2L, "Nikita", 38)
@@ -67,7 +67,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("check receiving single user details")
-    void getCarById() throws Exception {
+    void getUserById() throws Exception {
         User user = new User(1L, "Anton", 30);
 
         when(service.findById(anyLong())).thenReturn(user);
@@ -83,7 +83,7 @@ class UserControllerTest {
     @SneakyThrows
     @Test
     @DisplayName("check adding a new user")
-    void createCar() throws Exception {
+    void createUser() throws Exception {
         User user = new User(1L, "Anton", 30);
 
         when(service.save(any(User.class))).thenReturn(user);
@@ -100,7 +100,7 @@ class UserControllerTest {
 
     @Test
     @DisplayName("check updating a user")
-    void updateCar() throws Exception {
+    void updateUser() throws Exception {
         User user = new User(1L, "Anton", 30);
 
         when(service.update(any(User.class))).thenReturn(user);
@@ -117,7 +117,7 @@ class UserControllerTest {
     @Test
     @DisplayName("check deleting a user by id")
     @WithMockUser(username = "admin", roles = "ADMIN")
-    void deleteCarById() throws Exception {
+    void deleteUserById() throws Exception {
 
         doNothing().when(service).deleteById(anyLong());
 
