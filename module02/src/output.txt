@@ -1,0 +1,1 @@
+Line count: 6, longest line: sdasdasd dsadas sadsdasd sdasda, total spaces: 16
