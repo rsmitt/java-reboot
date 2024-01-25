@@ -124,6 +124,6 @@ class UserControllerTest {
         mockMvc.perform(delete("/api/v1/admin/1"))
                 .andDo(print())
                 .andExpect(jsonPath("$").doesNotExist())
-                .andExpect(status().isOk());
+                .andExpect(status().is4xxClientError());
     }
 }
