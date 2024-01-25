@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/*@Configuration
+@Configuration
 public class OpenApiConfig {
     @Bean
     public OpenAPI customOpenAPI(@Value("${service.description}") String appDescription, @Value("${service.version}") String appVersion) {
@@ -19,4 +19,4 @@ public class OpenApiConfig {
                         .termsOfService("http://swagger.io/terms/")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")));
     }
-}*/
+}
