@@ -25,7 +25,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.0</version>
+        <version>2.7.2</version>
     </parent>
 
     <name>homework-javareboot-2023-group-06</name>
@@ -34,7 +34,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <junit.version>5.9.2</junit.version>
+        <junit.version>5.7.2</junit.version>
         <mockito.version>5.5.0</mockito.version>
         <mockito.junit.version>5.3.1</mockito.junit.version>
         <assertj.version>3.24.2</assertj.version>

@@ -1,6 +1,8 @@
 package ru.sberbank.edu.controller;
 
 import ru.sberbank.edu.entity.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ import java.util.List;
 @Tag(name = "user", description = "User API")
 public class UserController {
 
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     private final UserService service;
 
     @GetMapping
