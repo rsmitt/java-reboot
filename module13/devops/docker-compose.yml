@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: postgres
+    volumes:
+      - /Users/kaysnofal/Desktop/Java_Sber/task1/java-reboot/module13/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - 8089:5432
+
+  user-service:
+    image: my_user_app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
