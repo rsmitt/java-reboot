@@ -1,4 +1,7 @@
-package ru.sberbank.edu;
+package ru.sberbank.edu.caches;
+
+import ru.sberbank.edu.models.WeatherInfo;
+import ru.sberbank.edu.provider.WeatherProvider;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,15 +29,21 @@ public class WeatherCache {
      * @param city - city
      * @return actual weather info
      */
-    public WeatherInfo getWeatherInfo(String city) {
+    public synchronized WeatherInfo getWeatherInfo(String city) {
         // should be implemented
-        return null;
+        WeatherInfo cacheCity = cache.get(city);
+        if((cacheCity != null) && ( java.time.LocalDateTime.now().isAfter(cacheCity.getExpiryTime()))) {
+            return cache.get(city);
+        }else
+            removeWeatherInfo(city);
+            cache.put(city,weatherProvider.get(city));
+            return weatherProvider.get(city);
     }
 
     /**
      * Remove weather info from cache.
      **/
     public void removeWeatherInfo(String city) {
-        // should be implemented
+        cache.remove(city);
     }
 }
