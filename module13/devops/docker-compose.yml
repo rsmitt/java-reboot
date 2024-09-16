@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:13.2-alpine
+    volumes:
+      - E:/8.IDEA_project/JavaRebootModule12BD:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 8089:5432
+  User-service:
+    image: my_user_app_image
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+    ports:
+      - 8080:8080
+    depends_on:
+      - db

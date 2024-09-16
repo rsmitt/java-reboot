@@ -18,4 +18,20 @@ public class CityInfo {
         this.name = name;
         this.position = position;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public GeoPosition getPosition() {
+        return position;
+    }
+
+    @Override
+    public String toString() {
+        return "CityInfo{" +
+                "name='" + name + '\'' +
+                ", position=" + position +
+                '}';
+    }
 }

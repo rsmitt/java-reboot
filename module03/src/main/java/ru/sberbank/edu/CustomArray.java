@@ -1,6 +1,7 @@
 package ru.sberbank.edu;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * Simple array. Can store any objects.

@@ -1,13 +1,19 @@
 package ru.sberbank.edu;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+
 /**
  * Hello world!
  *
  */
-public class App 
-{
+
+@SpringBootApplication
+public class App {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+
+        SpringApplication.run(App.class, args);
     }
 }

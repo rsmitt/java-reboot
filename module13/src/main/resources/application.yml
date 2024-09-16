@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:8089/postgres
+    username: postgres
+    password: password
+
+service:
+  description: User service
+  version: 1.0 BETA
